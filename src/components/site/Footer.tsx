@@ -57,7 +57,7 @@ export function Footer() {
                 ))}
             </nav>
           ))}
-          <div className="col-span-2 flex flex-col justify-between gap-6 border-b border-r border-cream/15 p-6 sm:col-span-1 md:p-8">
+          <div className="flex flex-col justify-between gap-6 border-b border-r border-cream/15 p-6 md:p-8">
             <p className="display text-xl font-bold leading-snug">Planning employee transport or corporate travel?</p>
             <Link
               href={quoteHref()}

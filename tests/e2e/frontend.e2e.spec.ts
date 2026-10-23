@@ -63,3 +63,14 @@ test('unknown pages return 404', async ({ page }) => {
   const res = await page.goto('/solutions/not-a-real-service/')
   expect(res?.status()).toBe(404)
 })
+
+test.describe('phone width', () => {
+  test.use({ viewport: { width: 375, height: 812 } })
+  for (const path of pages) {
+    test(`no sideways scroll ${path}`, async ({ page }) => {
+      await page.goto(path)
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
+      expect(overflow).toBeLessThanOrEqual(0)
+    })
+  }
+})

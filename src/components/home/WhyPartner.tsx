@@ -8,6 +8,7 @@ import {
 import type { Icon } from '@phosphor-icons/react'
 import Image from 'next/image'
 
+import { RevealText } from '@/components/motion/RevealText'
 import driverTraining from '../../../public/images/driver-training.jpg'
 
 const reasons: { icon: Icon; title: string; body: string }[] = [
@@ -48,12 +49,10 @@ const industries = [
 
 export function WhyPartner() {
   return (
-    <section aria-labelledby="why-title" className="border-b border-rule">
+    <section data-section="Why G DRIVE" aria-labelledby="why-title" className="border-b border-rule">
       <div className="frame">
         <div className="border-b border-rule px-4 pb-10 pt-16 sm:px-6 md:pt-24 lg:px-10">
-          <h2 id="why-title" className="display text-4xl font-extrabold md:text-6xl">
-            Why partner with G DRIVE
-          </h2>
+          <RevealText id="why-title" text="Why partner with G DRIVE" className="display text-4xl font-extrabold md:text-6xl" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-6">

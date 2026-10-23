@@ -3,6 +3,7 @@ import { Archivo, Hanken_Grotesk, JetBrains_Mono } from 'next/font/google'
 import React from 'react'
 
 import { Footer } from '@/components/site/Footer'
+import { SmoothScroll } from '@/components/motion/SmoothScroll'
 import { Header } from '@/components/site/Header'
 import { site } from '@/lib/site'
 import './globals.css'
@@ -60,9 +61,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
+        <SmoothScroll>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   )

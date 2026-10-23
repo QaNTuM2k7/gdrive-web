@@ -1,7 +1,7 @@
 import { PhoneIcon } from '@phosphor-icons/react/dist/ssr'
 import type { Metadata } from 'next'
 
-import { LaneField } from '@/components/site/LaneField'
+import { LaneCanvas } from '@/components/motion/LaneCanvas'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { primaryContact, telHref } from '@/lib/site'
 
@@ -50,8 +50,8 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
             </a>
           </div>
         </div>
-        <div className="hidden p-10 text-cream lg:col-span-5 lg:flex">
-          <LaneField className="h-full min-h-[360px] w-full" laneHeight={14} />
+        <div className="relative hidden min-h-[360px] p-10 lg:col-span-5 lg:block">
+          <LaneCanvas laneGap={34} thickness={14} />
         </div>
       </div>
     </section>

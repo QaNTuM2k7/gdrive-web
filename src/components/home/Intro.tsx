@@ -1,16 +1,19 @@
 import { ArrowRightIcon, SealCheckIcon } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
 
+import { RevealText } from '@/components/motion/RevealText'
 import { site } from '@/lib/site'
 
 export function Intro() {
   return (
-    <section aria-labelledby="intro-title" className="border-b border-rule">
+    <section data-section="About" aria-labelledby="intro-title" className="border-b border-rule">
       <div className="frame grid grid-cols-1 lg:grid-cols-12">
         <div className="reveal px-4 py-14 sm:px-6 md:py-20 lg:col-span-8 lg:border-r lg:border-rule lg:px-10">
-          <h2 id="intro-title" className="display mb-8 text-4xl font-extrabold md:text-5xl">
-            Moving people. Connecting possibilities.
-          </h2>
+          <RevealText
+            id="intro-title"
+            text="Moving people. Connecting possibilities."
+            className="display mb-8 text-4xl font-extrabold md:text-5xl"
+          />
           <p className="max-w-[34ch] text-2xl leading-snug text-ink md:text-[2rem]">
             G DRIVE is the flagship mobility brand of {site.legalName}, serving corporates, educational
             institutions and public transit networks.

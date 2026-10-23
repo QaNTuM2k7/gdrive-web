@@ -6,7 +6,8 @@ type Variant = 'gold' | 'outline-light' | 'outline-dark' | 'navy'
 
 const variants: Record<Variant, string> = {
   gold: 'bg-gold text-navy hover:bg-[#ffc31f]',
-  navy: 'bg-navy text-cream hover:bg-blue-deep',
+  // Ink on paper: navy in light mode, cream in dark mode.
+  navy: 'bg-ink text-paper hover:bg-blue hover:text-cream',
   'outline-light': 'border border-on-blue/60 text-on-blue hover:bg-on-blue hover:text-blue',
   'outline-dark': 'border border-ink/50 text-ink hover:bg-ink hover:text-paper',
 }

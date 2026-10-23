@@ -66,7 +66,6 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
   }
   body {
@@ -82,11 +81,6 @@
   :focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 3px;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
   }
 }
 
@@ -121,28 +115,6 @@
   }
   .condensed {
     font-stretch: 85%;
-  }
-}
-
-/* Lane markings: dashed lines that drift like traffic. Static under reduced motion. */
-.lane {
-  height: var(--lane-h, 10px);
-  width: 200%;
-  background-image: repeating-linear-gradient(
-    90deg,
-    currentColor 0 var(--dash, 120px),
-    transparent var(--dash, 120px) calc(var(--dash, 120px) + var(--gap, 60px))
-  );
-}
-@media (prefers-reduced-motion: no-preference) {
-  .lane {
-    animation: lane-drift var(--speed, 14s) linear infinite;
-    animation-direction: var(--dir, normal);
-  }
-}
-@keyframes lane-drift {
-  to {
-    transform: translateX(calc(-1 * (var(--dash, 120px) + var(--gap, 60px)) * 4));
   }
 }
 

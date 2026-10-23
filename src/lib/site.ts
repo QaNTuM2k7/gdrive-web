@@ -47,6 +47,7 @@ export const solutions = [
     short: 'Employee transportation',
     summary: 'Daily commutes, shift-based travel and pickup and drop planned around your office hours.',
     icon: 'UsersThree',
+    points: ['Pickup and drop planned around office hours', 'Day, evening, night and rotating shifts', 'Route planning and optimisation', 'GPS-based trip monitoring and reporting'],
   },
   {
     slug: 'corporate-car-rental',
@@ -54,6 +55,7 @@ export const solutions = [
     short: 'Corporate car rental',
     summary: 'Airport transfers, business meetings and guest travel with flexible vehicle options.',
     icon: 'Car',
+    points: ['Airport transfers for employees and guests', 'Business meetings and conferences', 'Corporate guest transportation', 'Sedans, SUVs and other vehicle categories'],
   },
   {
     slug: 'executive-car-rental',
@@ -61,6 +63,7 @@ export const solutions = [
     short: 'Executive car rental',
     summary: 'Coordinated, well-planned travel for leadership teams and visiting executives.',
     icon: 'Briefcase',
+    points: ['Executive airport transfers', 'Business meeting transfers', 'Transportation for visiting leadership teams', 'Vehicle and chauffeur details confirmed at booking'],
   },
   {
     slug: 'shuttle-services',
@@ -68,6 +71,7 @@ export const solutions = [
     short: 'Shuttle services',
     summary: 'Scheduled shuttle routes for corporate campuses, business parks and institutions.',
     icon: 'Bus',
+    points: ['Office shuttles between pickup points and buildings', 'Business park and campus circulation', 'Scheduled routes based on passenger demand', 'Buses and vans sized to capacity'],
   },
   {
     slug: 'campus-mobility',
@@ -75,6 +79,7 @@ export const solutions = [
     short: 'Campus mobility',
     summary: 'Transportation for students, staff and visitors, planned around campus layout.',
     icon: 'GraduationCap',
+    points: ['Student and staff transportation', 'Corporate campus and business park movement', 'Route and pickup-point assessment', 'Coordination with campus transport teams'],
   },
   {
     slug: 'metro-connect',
@@ -82,6 +87,7 @@ export const solutions = [
     short: 'Metro Connect',
     summary: 'First-mile and last-mile feeder shuttles between metro stations and workplaces.',
     icon: 'Train',
+    points: ['First-mile and last-mile connectivity', 'Metro station to workplace shuttles', 'Feeder routes for campuses', 'Timetables matched to passenger demand'],
   },
 ] as const
 

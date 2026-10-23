@@ -9,10 +9,10 @@ import {
   SquaresFourIcon,
 } from '@phosphor-icons/react/dist/ssr'
 import type { Icon } from '@phosphor-icons/react'
-import Image from 'next/image'
 import Link from 'next/link'
 
-import busBoarding from '../../../public/images/bus-boarding.jpg'
+import { RevealText } from '@/components/motion/RevealText'
+import { RouteDiagram } from '@/components/motion/RouteDiagram'
 
 type Feature = { icon: Icon; label: string }
 type Group = { verb: string; features: Feature[]; tone: 'gold' | 'line' }
@@ -55,12 +55,14 @@ const groups: Group[] = [
 
 export function TechnologyBento() {
   return (
-    <section aria-labelledby="tech-title" className="on-deep border-b border-rule-on-blue">
+    <section data-section="Technology" aria-labelledby="tech-title" className="on-deep border-b border-rule-on-blue">
       <div className="frame">
         <div className="flex flex-col gap-6 border-b border-rule-on-blue px-4 pb-10 pt-16 sm:px-6 md:pt-24 lg:px-10">
-          <h2 id="tech-title" className="display max-w-[18ch] text-4xl font-extrabold md:text-6xl">
-            Technology-enabled transportation
-          </h2>
+          <RevealText
+            id="tech-title"
+            text="Technology-enabled transportation"
+            className="display max-w-[18ch] text-4xl font-extrabold md:text-6xl"
+          />
           <p className="max-w-[60ch] text-lg leading-relaxed text-on-blue-soft">
             Booking, scheduling, driver and vehicle allocation, trip monitoring, reporting and billing,
             connected on one platform.
@@ -68,15 +70,8 @@ export function TechnologyBento() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12">
-          <div className="relative min-h-[320px] overflow-hidden border-b border-rule-on-blue md:col-span-5 md:border-b-0 md:border-r">
-            <Image
-              src={busBoarding}
-              alt="Employees boarding a G DRIVE staff bus"
-              fill
-              placeholder="blur"
-              sizes="(min-width: 768px) 40vw, 100vw"
-              className="object-cover object-[40%_100%]"
-            />
+          <div className="relative min-h-[300px] overflow-hidden border-b border-rule-on-blue bg-navy/30 text-cream md:col-span-5 md:border-b-0 md:border-r">
+            <RouteDiagram name="tower" className="absolute inset-0 p-4 md:p-6" />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:col-span-7">

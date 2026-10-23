@@ -1,6 +1,7 @@
 import Image, { type StaticImageData } from 'next/image'
 import Link from 'next/link'
 
+import { RevealText } from '@/components/motion/RevealText'
 import buses from '../../../public/images/fleet/buses.jpg'
 import electric from '../../../public/images/fleet/electric-vehicles.jpg'
 import sedans from '../../../public/images/fleet/sedans.jpg'
@@ -18,12 +19,14 @@ const fleet: { slug: string; name: string; use: string; image: StaticImageData }
 
 export function FleetStrip() {
   return (
-    <section aria-labelledby="fleet-title" className="border-b border-rule">
+    <section data-section="Fleet" aria-labelledby="fleet-title" className="border-b border-rule">
       <div className="frame">
         <div className="flex flex-col gap-5 border-b border-rule px-4 pb-10 pt-16 sm:px-6 md:flex-row md:items-end md:justify-between md:pt-24 lg:px-10">
-          <h2 id="fleet-title" className="display max-w-[14ch] text-4xl font-extrabold md:text-6xl">
-            A fleet for every requirement
-          </h2>
+          <RevealText
+            id="fleet-title"
+            text="A fleet for every requirement"
+            className="display max-w-[14ch] text-4xl font-extrabold md:text-6xl"
+          />
           <Link
             href="/fleet/"
             className="font-mono text-[13px] uppercase tracking-[0.08em] text-link hover:text-ink"

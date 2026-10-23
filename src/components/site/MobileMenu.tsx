@@ -1,6 +1,7 @@
 'use client'
 
 import { ListIcon, XIcon } from '@phosphor-icons/react'
+import { useLenis } from 'lenis/react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
@@ -11,16 +12,20 @@ export function MobileMenu({ items }: { items: NavItem[] }) {
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)
 
+  const lenis = useLenis()
+
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
+    lenis?.stop()
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
+      lenis?.start()
     }
-  }, [open])
+  }, [open, lenis])
 
   return (
     <div className="lg:hidden">
@@ -38,6 +43,7 @@ export function MobileMenu({ items }: { items: NavItem[] }) {
       <div
         id="mobile-menu"
         hidden={!open}
+        data-lenis-prevent
         className="on-blue fixed inset-x-0 bottom-0 top-16 overflow-y-auto border-t border-rule-on-blue"
       >
         <nav aria-label="Mobile" className="flex flex-col">

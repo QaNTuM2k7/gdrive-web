@@ -7,7 +7,6 @@ import employeesBoarding from '../../public/images/employees-boarding.jpg'
 import fleetHighway from '../../public/images/fleet-highway.jpg'
 import chauffeur from '../../public/images/people/chauffeur.webp'
 import airportPickup from '../../public/images/rental/airport-pickup.jpg'
-import billing from '../../public/images/rental/billing-options.jpg'
 import cabin from '../../public/images/rental/cabin-interior.jpg'
 import executiveArrival from '../../public/images/rental/executive-arrival.jpg'
 import executiveRear from '../../public/images/rental/executive-rear-seat.jpg'
@@ -153,7 +152,7 @@ const corporateCarRental: DetailPage = {
         'Technology-enabled operational visibility where available',
         'Service arrangements tailored to organizational requirements',
       ],
-      image: { src: billing, alt: 'Billing options for individual and corporate travel', focus: '50% 50%' },
+      image: { src: itParkPickup, alt: 'A G DRIVE driver welcoming a business guest at an IT park', focus: '60% 50%' },
     },
     {
       type: 'cities',

@@ -43,5 +43,19 @@ export async function getPost(slug: string): Promise<Post | null> {
   }
 }
 
+// Payload returns absolute media URLs. Same-site files become relative paths so next/image treats them as
+// local; S3 URLs stay absolute and are allowed through images.remotePatterns.
+export function mediaSrc(url?: string | null): string | undefined {
+  if (!url) return undefined
+  try {
+    const u = new URL(url, 'http://local')
+    const site = new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3100')
+    if (u.origin === 'http://local' || u.origin === site.origin) return `${u.pathname}${u.search}`
+    return url
+  } catch {
+    return url
+  }
+}
+
 export const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })

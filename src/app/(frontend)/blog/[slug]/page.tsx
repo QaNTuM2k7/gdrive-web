@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation'
 import { ClosingCta } from '@/components/home/ClosingCta'
 import { PageHeader } from '@/components/site/PageHeader'
 import { serviceLabel } from '@/lib/leads/options'
-import { formatDate, getPost } from '@/lib/posts'
+import { formatDate, getPost, mediaSrc } from '@/lib/posts'
 import { pageMetadata } from '@/lib/seo'
 import { site } from '@/lib/site'
 import type { Media } from '@/payload-types'
@@ -80,9 +80,9 @@ export default async function PostPage({ params }: Props) {
             </div>
           </aside>
           <div className="px-4 py-10 sm:px-6 lg:col-span-9 lg:px-12 lg:py-14">
-            {cover?.url && (
+            {mediaSrc(cover?.url) && cover && (
               <div className="relative mb-10 aspect-[16/9] overflow-hidden">
-                <Image src={cover.sizes?.hero?.url || cover.url} alt={cover.alt} fill priority sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" />
+                <Image src={mediaSrc(cover.sizes?.hero?.url || cover.url)!} alt={cover.alt} fill priority sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" />
               </div>
             )}
             <RichText data={post.content} className="prose-gdrive max-w-[68ch]" />

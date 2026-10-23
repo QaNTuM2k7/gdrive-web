@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { ClosingCta } from '@/components/home/ClosingCta'
 import { PageHeader } from '@/components/site/PageHeader'
 import type { Media } from '@/payload-types'
-import { formatDate, listPosts } from '@/lib/posts'
+import { formatDate, listPosts, mediaSrc } from '@/lib/posts'
 import { pageMetadata } from '@/lib/seo'
 
 // Rendered per request so new posts appear immediately and builds never need the database.
@@ -48,9 +48,9 @@ export default async function BlogPage() {
                   <li key={post.id} className="border-b border-rule md:border-r md:[&:nth-child(2n)]:border-r-0 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0">
                     <Link href={`/blog/${post.slug}/`} className="group flex h-full flex-col">
                       <div className="relative aspect-[16/10] overflow-hidden border-b border-rule bg-paper-2">
-                        {cover?.url && (
+                        {mediaSrc(cover?.url) && cover && (
                           <Image
-                            src={cover.sizes?.card?.url || cover.url}
+                            src={mediaSrc(cover.sizes?.card?.url || cover.url)!}
                             alt={cover.alt}
                             fill
                             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"

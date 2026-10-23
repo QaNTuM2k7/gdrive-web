@@ -107,7 +107,7 @@ export function HowWeWork() {
               }}
               data-index={i}
               className="flex min-h-[46vh] flex-col justify-center gap-4 border-b border-rule px-4 py-12 transition-opacity duration-500 last:border-b-0 sm:px-6 lg:min-h-[64vh] lg:px-12"
-              style={{ opacity: i === active ? 1 : 0.35 }}
+              style={{ opacity: i === active ? 1 : 0.55 }}
             >
               <span className="font-mono text-sm text-link">{String(i + 1).padStart(2, '0')}</span>
               <h3 className="display max-w-[18ch] text-3xl font-extrabold md:text-5xl">{s.title}</h3>

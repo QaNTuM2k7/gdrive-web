@@ -50,6 +50,8 @@ export type Section = {
   /** Blocks shown on the hub page after the child cards. */
   blocks: Block[]
   cardsTitle: string
+  /** Copy for the call-to-action tile that fills any empty cell after the cards. */
+  cardsCta?: { title: string; body: string }
   pages: DetailPage[]
   faqs?: Faq[]
   cta: string

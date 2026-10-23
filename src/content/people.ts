@@ -108,6 +108,7 @@ export const peopleSection: Section = {
   intro:
     'Technology provides intelligence. People deliver the experience. Trained personnel, structured operating procedures and vehicle maintenance make transportation dependable.',
   hero: { src: driverTraining, alt: 'G DRIVE drivers in a training session', focus: '50% 50%' },
+  cardsCta: { title: 'Want to see how we operate?', body: 'Talk to our team about training, screening and maintenance standards for your service.' },
   cardsTitle: 'How we keep standards high',
   pages: [driverTrainingPage, maintenancePage],
   blocks: [

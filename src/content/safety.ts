@@ -228,6 +228,7 @@ export const safetySection: Section = {
   intro:
     'At G DRIVE, safety is integrated throughout the transportation lifecycle, from driver readiness to trip completion.',
   hero: { src: aiMonitoring, alt: 'An in-cab AI camera monitoring a G DRIVE driver', focus: '50% 40%' },
+  cardsCta: { title: 'Planning safety for your fleet?', body: 'Tell us about your vehicles, drivers and routes. We will recommend the right combination of safety layers.' },
   cardsTitle: 'Four layers of safety technology',
   pages: [breathalyzer, geofencing, aiVideo, adas],
   blocks: [

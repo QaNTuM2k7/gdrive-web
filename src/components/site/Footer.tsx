@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { navTree } from '@/lib/nav'
-import { site, telHref } from '@/lib/site'
+import { quoteHref, site, telHref } from '@/lib/site'
 import { Logo } from './Logo'
 
 export function Footer() {
@@ -57,6 +57,15 @@ export function Footer() {
                 ))}
             </nav>
           ))}
+          <div className="col-span-2 flex flex-col justify-between gap-6 border-b border-r border-cream/15 p-6 sm:col-span-1 md:p-8">
+            <p className="display text-xl font-bold leading-snug">Planning employee transport or corporate travel?</p>
+            <Link
+              href={quoteHref()}
+              className="inline-flex h-11 w-fit items-center bg-gold px-5 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-navy hover:bg-[#ffc31f]"
+            >
+              Request a Quote
+            </Link>
+          </div>
         </div>
 
         <div className="flex flex-col gap-2 px-6 py-5 text-xs text-cream/55 sm:flex-row sm:justify-between md:px-10 lg:col-span-12">

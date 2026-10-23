@@ -91,7 +91,7 @@ export function PageHeader({
         {image && (
           <div className="relative h-[clamp(240px,42vw,560px)] overflow-hidden border-t border-rule-on-blue">
             {image.fit === 'contain' ? (
-              <div className="absolute inset-0 bg-cream">
+              <div className="absolute inset-0 bg-white">
                 <Image
                   src={image.src}
                   alt={image.alt}

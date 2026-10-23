@@ -5,17 +5,36 @@ import Link from 'next/link'
 import { Blocks } from '@/components/blocks/Blocks'
 import { ClosingCta } from '@/components/home/ClosingCta'
 import { Faq } from '@/components/home/Faq'
+import { JsonLd } from '@/components/JsonLd'
 import { RevealText } from '@/components/motion/RevealText'
 import { SectionIndicator } from '@/components/motion/SectionIndicator'
 import { PageHeader } from '@/components/site/PageHeader'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import type { DetailPage, Section } from '@/content/types'
+import type { ServiceValue } from '@/lib/leads/options'
 import { faqJsonLd, serviceJsonLd } from '@/lib/jsonld'
 import { quoteHref } from '@/lib/site'
-import { JsonLd } from '@/components/JsonLd'
 
-// Cards linking to each page in a section, with a photo or vehicle cut-out.
-export function PageCards({ title, pages, base }: { title: string; pages: DetailPage[]; base: string }) {
+// Cards linking to each page in a section, with a photo or vehicle cut-out. Leftover grid cells are
+// filled with a call to action so no row ends in an empty box.
+export function PageCards({
+  title,
+  pages,
+  base,
+  service,
+  cta = {
+    title: 'Not sure which fits?',
+    body: 'Tell us about your passengers, routes and schedules. Our team will recommend the right option.',
+  },
+}: {
+  title: string
+  pages: DetailPage[]
+  base: string
+  service: ServiceValue
+  cta?: { title: string; body: string }
+}) {
+  const lgRemainder = (3 - (pages.length % 3)) % 3
+  const smRemainder = pages.length % 2
   return (
     <section data-section={title} className="border-b border-rule">
       <div className="frame">
@@ -26,7 +45,7 @@ export function PageCards({ title, pages, base }: { title: string; pages: Detail
           {pages.map((p) => (
             <li key={p.slug} className="border-b border-rule sm:border-r sm:[&:nth-child(2n)]:border-r-0 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0">
               <Link href={`${base}/${p.slug}/`} className="group flex h-full flex-col">
-                <div className={`relative aspect-[16/10] overflow-hidden border-b border-rule ${p.hero.fit === 'contain' ? 'bg-cream' : ''}`}>
+                <div className={`relative aspect-[16/10] overflow-hidden border-b border-rule ${p.hero.fit === 'contain' ? 'bg-white' : ''}`}>
                   <Image
                     src={p.hero.src}
                     alt=""
@@ -57,6 +76,21 @@ export function PageCards({ title, pages, base }: { title: string; pages: Detail
               </Link>
             </li>
           ))}
+          {lgRemainder > 0 && (
+            <li
+              className={`on-blue flex-col justify-between gap-8 border-b border-rule-on-blue p-6 md:p-8 ${
+                smRemainder ? 'flex' : 'hidden lg:flex'
+              } ${lgRemainder === 2 ? 'lg:col-span-2' : 'lg:col-span-1'}`}
+            >
+              <div className="flex flex-col gap-3">
+                <h3 className="display text-2xl font-bold">{cta.title}</h3>
+                <p className="max-w-[40ch] text-on-blue-soft">{cta.body}</p>
+              </div>
+              <div>
+                <ButtonLink href={quoteHref(service)}>Request a Quote</ButtonLink>
+              </div>
+            </li>
+          )}
         </ul>
       </div>
     </section>
@@ -127,7 +161,7 @@ export function HubTemplate({ section }: { section: Section }) {
       >
         <ButtonLink href={quoteHref(section.service)}>Request a Quote</ButtonLink>
       </PageHeader>
-      <PageCards title={section.cardsTitle} pages={section.pages} base={section.base} />
+      <PageCards title={section.cardsTitle} pages={section.pages} base={section.base} service={section.service} cta={section.cardsCta} />
       <Blocks blocks={section.blocks} />
       {section.faqs && section.faqs.length > 0 && <Faq items={section.faqs} title="Frequently asked questions" />}
       <ClosingCta title={section.cta} service={section.service} />

@@ -1,6 +1,5 @@
 import busBoardingPortrait from '../../public/images/fleet/bus-boarding-portrait.jpg'
 import airportPickup from '../../public/images/rental/airport-pickup.jpg'
-import billing from '../../public/images/rental/billing-options.jpg'
 import itParkPickup from '../../public/images/rental/it-park-pickup.jpg'
 import controlRoom from '../../public/images/technology/control-room.jpg'
 import gpsTelematics from '../../public/images/technology/gps-telematics.jpg'
@@ -64,7 +63,7 @@ const fleetManagement: DetailPage = {
       body: [
         'Digital reporting helps authorized teams review trip records, service activity, selected operational metrics and billing information, for a more structured approach to transportation administration.',
       ],
-      image: { src: billing, alt: 'Billing options for individual and corporate travel', focus: '50% 50%' },
+      image: { src: controlRoom, alt: 'An operator reviewing trip reports in the G DRIVE control room', focus: '50% 45%' },
       reverse: true,
     },
     availability,
@@ -245,6 +244,7 @@ export const technologySection: Section = {
   intro:
     "Transportation needs coordination between requests, schedules, drivers, vehicles, passengers and operations teams. G DRIVE's technology ecosystem brings these together for centralized coordination and fleet visibility.",
   hero: { src: controlRoom, alt: 'An operator monitoring live fleet dashboards in the G DRIVE control room', focus: '50% 45%' },
+  cardsCta: { title: 'Which tools fit your operations?', body: 'Tell us how your transport desk works today. We will show you which parts of the platform apply.' },
   cardsTitle: 'Our technology ecosystem',
   pages: [fleetManagement, gps, driverApp, passengerApp, controlTower],
   blocks: [

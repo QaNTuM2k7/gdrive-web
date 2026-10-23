@@ -2,6 +2,8 @@
 
 import { motion, type Variants } from 'motion/react'
 
+const NBSP = String.fromCharCode(160)
+
 const tags = { h1: motion.h1, h2: motion.h2, h3: motion.h3, p: motion.p }
 
 const container: Variants = {
@@ -43,12 +45,13 @@ export function RevealText({
       initial="hidden"
       {...(onMount ? { animate: 'show' } : { whileInView: 'show', viewport: { once: true, amount: 0.6 } })}
     >
-      {text.split(' ').map((w, i) => (
+      {/* Keep the brand name on one line: the non-breaking space stops "G" and "DRIVE" splitting. */}
+      {text.replace(/G DRIVE/g, `G${NBSP}DRIVE`).split(' ').map((w, i) => (
         <span key={i} aria-hidden className="inline-flex overflow-hidden pb-[0.08em] align-bottom">
           <motion.span variants={word} className="inline-block">
             {w}
           </motion.span>
-          {' '}
+          {NBSP}
         </span>
       ))}
     </Tag>

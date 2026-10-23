@@ -20,7 +20,7 @@ function SectionHead({ title, intro, id }: { title: string; intro?: string; id?:
 function Picture({ image, sizes, className = '' }: { image: Img; sizes: string; className?: string }) {
   const contain = image.fit === 'contain'
   return (
-    <div className={`relative overflow-hidden ${contain ? 'bg-cream' : ''} ${className}`}>
+    <div className={`relative overflow-hidden ${contain ? 'bg-white' : ''} ${className}`}>
       <Image
         src={image.src}
         alt={image.alt}

@@ -9,7 +9,6 @@ import { SafetyLayers } from '@/components/home/SafetyLayers'
 import { SolutionsStack } from '@/components/home/SolutionsStack'
 import { TechnologyBento } from '@/components/home/TechnologyBento'
 import { WhyPartner } from '@/components/home/WhyPartner'
-import { LaneSweep } from '@/components/motion/LaneSweep'
 import { SectionIndicator } from '@/components/motion/SectionIndicator'
 import { faqJsonLd, organizationJsonLd } from '@/lib/jsonld'
 
@@ -59,7 +58,6 @@ export default function HomePage() {
       <FleetStrip />
       <WhyPartner />
       <Faq items={faqs} />
-      <LaneSweep />
       <ClosingCta />
     </>
   )

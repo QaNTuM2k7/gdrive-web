@@ -1,21 +1,8 @@
 import Image from 'next/image'
 
-// TODO(client): show only logos with written permission (Clients.approvedForWeb in the CMS).
-// Logos are the low-resolution files from the brochure; replace with vector originals.
-const logos = [
-  { file: 'barclays.jpg', name: 'Barclays' },
-  { file: 'standard-chartered.jpg', name: 'Standard Chartered' },
-  { file: 'zoho.jpg', name: 'Zoho' },
-  { file: 'freshworks.jpg', name: 'Freshworks' },
-  { file: 'maersk.png', name: 'Maersk' },
-  { file: 'yamaha.jpg', name: 'Yamaha' },
-  { file: 'capitaland.jpg', name: 'CapitaLand' },
-  { file: 'ceat.jpg', name: 'CEAT' },
-  { file: 'lt-construction.jpg', name: 'L&T Construction' },
-  { file: 'motherson.jpg', name: 'Motherson' },
-  { file: 'caparo.jpg', name: 'Caparo' },
-  { file: 'vit-chennai.jpg', name: 'VIT Chennai' },
-]
+import { clientLogos } from '@/lib/clients'
+
+const logos = clientLogos
 
 export function ClientMarquee() {
   return (

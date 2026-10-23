@@ -1,5 +1,17 @@
 import { site } from './site'
 
+export function serviceJsonLd({ name, description, path }: { name: string; description: string; path: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name,
+    description,
+    url: new URL(path, site.url).toString(),
+    provider: { '@id': `${site.url}/#organization` },
+    areaServed: ['Chennai', 'Tamil Nadu', 'Bengaluru', 'Hyderabad'].map((name) => ({ '@type': 'Place', name })),
+  }
+}
+
 export function faqJsonLd(items: { q: string; a: string }[]) {
   return {
     '@context': 'https://schema.org',

@@ -1,8 +1,7 @@
 import type { CollectionAfterChangeHook, CollectionConfig } from 'payload'
 
+import { isAdmin, isAdminOrSales } from '@/access/roles'
 import { serviceLabel, serviceOptions } from '@/lib/leads/options'
-
-const isLoggedIn = ({ req }: { req: { user?: unknown } }) => Boolean(req.user)
 
 // Emails the sales inbox when a new lead arrives. Without an email adapter configured,
 // Payload logs the message to the console instead of sending it.
@@ -55,9 +54,9 @@ export const Leads: CollectionConfig = {
   access: {
     // Leads are only created by the website's server action (local API with overrideAccess).
     create: () => false,
-    read: isLoggedIn,
-    update: isLoggedIn,
-    delete: isLoggedIn,
+    read: isAdminOrSales,
+    update: isAdminOrSales,
+    delete: isAdmin,
   },
   hooks: {
     afterChange: [notifySales],

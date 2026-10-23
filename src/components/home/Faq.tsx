@@ -8,16 +8,16 @@ import { RevealText } from '@/components/motion/RevealText'
 export type FaqItem = { q: string; a: string }
 
 // Accordion that opens one answer at a time. Height animates with a grid-rows transition, so no measuring.
-export function Faq({ items }: { items: FaqItem[] }) {
+export function Faq({ items, title = 'Questions we often hear' }: { items: FaqItem[]; title?: string }) {
   const [open, setOpen] = useState<number | null>(0)
   const base = useId()
 
   return (
-    <section data-section="FAQ" aria-labelledby="faq-title" className="border-b border-rule">
+    <section data-section="FAQ" aria-labelledby={`${base}-title`} className="border-b border-rule">
       <div className="frame grid grid-cols-1 lg:grid-cols-12">
         <div className="border-b border-rule px-4 pb-10 pt-16 sm:px-6 md:pt-24 lg:col-span-4 lg:border-b-0 lg:border-r lg:px-10">
           <div className="lg:sticky lg:top-24">
-            <RevealText id="faq-title" text="Questions we often hear" className="display text-4xl font-extrabold md:text-5xl" />
+            <RevealText id={`${base}-title`} text={title} className="display text-4xl font-extrabold md:text-5xl" />
           </div>
         </div>
         <ul className="lg:col-span-8">

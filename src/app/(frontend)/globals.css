@@ -163,3 +163,57 @@
     transform: translateY(24px);
   }
 }
+
+/* Long-form text: blog articles and legal pages. */
+.prose-gdrive {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.prose-gdrive > * + * {
+  margin-top: 1.1em;
+}
+.prose-gdrive h2,
+.prose-gdrive h3 {
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-top: 2em;
+}
+.prose-gdrive h2 {
+  font-size: 1.9rem;
+}
+.prose-gdrive h3 {
+  font-size: 1.4rem;
+}
+.prose-gdrive a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-gdrive ul,
+.prose-gdrive ol {
+  padding-left: 1.4em;
+}
+.prose-gdrive ul {
+  list-style: square;
+}
+.prose-gdrive ol {
+  list-style: decimal;
+}
+.prose-gdrive li + li {
+  margin-top: 0.4em;
+}
+.prose-gdrive li::marker {
+  color: var(--link);
+}
+.prose-gdrive blockquote {
+  border-left: 3px solid var(--gold);
+  padding-left: 1.2em;
+  color: var(--ink-soft);
+}
+.prose-gdrive strong {
+  font-weight: 700;
+}

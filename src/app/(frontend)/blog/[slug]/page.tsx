@@ -7,19 +7,16 @@ import { notFound } from 'next/navigation'
 import { ClosingCta } from '@/components/home/ClosingCta'
 import { PageHeader } from '@/components/site/PageHeader'
 import { serviceLabel } from '@/lib/leads/options'
-import { formatDate, getPost, listPosts } from '@/lib/posts'
+import { formatDate, getPost } from '@/lib/posts'
 import { pageMetadata } from '@/lib/seo'
 import { site } from '@/lib/site'
 import type { Media } from '@/payload-types'
+import { JsonLd } from '@/components/JsonLd'
 
-export const revalidate = 300
+// Rendered per request so edits appear immediately and builds never need the database.
+export const dynamic = 'force-dynamic'
 
 type Props = { params: Promise<{ slug: string }> }
-
-export async function generateStaticParams() {
-  const posts = await listPosts(100)
-  return posts.map((p) => ({ slug: p.slug }))
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPost((await params).slug)
@@ -56,7 +53,7 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
+      <JsonLd data={articleLd} />
       <PageHeader
         title={post.title}
         crumbs={[

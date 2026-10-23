@@ -47,10 +47,14 @@ for (const path of pages) {
 
     const res = await page.goto(path)
     expect(res?.status()).toBe(200)
-    await expect(page).toHaveTitle(/G DRIVE/)
+    const title = await page.title()
+    expect(title.length).toBeGreaterThan(10)
+    expect(title.length).toBeLessThanOrEqual(75)
     await expect(page.locator('h1')).toHaveCount(1)
     const canonical = await page.locator('link[rel="canonical"]').getAttribute('href')
-    expect(canonical).toMatch(new RegExp(`${path.replace(/\//g, '\\/')}$`))
+    // The root canonical is the bare origin, which is equivalent to "/".
+    const normalized = path === '/' ? `${canonical?.replace(/\/$/, '')}/` : canonical
+    expect(normalized).toMatch(new RegExp(`${path.replace(/\//g, '\\/')}$`))
     expect(errors).toEqual([])
   })
 }

@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+
 import { ClientMarquee } from '@/components/home/ClientMarquee'
 import { ClosingCta } from '@/components/home/ClosingCta'
 import { Faq, type FaqItem } from '@/components/home/Faq'
@@ -11,6 +13,12 @@ import { TechnologyBento } from '@/components/home/TechnologyBento'
 import { WhyPartner } from '@/components/home/WhyPartner'
 import { SectionIndicator } from '@/components/motion/SectionIndicator'
 import { faqJsonLd, organizationJsonLd } from '@/lib/jsonld'
+import { JsonLd } from '@/components/JsonLd'
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+  openGraph: { url: '/', type: 'website', siteName: 'G DRIVE', locale: 'en_IN' },
+}
 
 // Answers come from the SEO master document's service-page FAQs.
 const faqs: FaqItem[] = [
@@ -43,10 +51,7 @@ const faqs: FaqItem[] = [
 export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([organizationJsonLd(), faqJsonLd(faqs)]) }}
-      />
+      <JsonLd data={[organizationJsonLd(), faqJsonLd(faqs)]} />
       <SectionIndicator />
       <Hero />
       <ClientMarquee />

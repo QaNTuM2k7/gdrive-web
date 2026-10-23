@@ -12,10 +12,7 @@ import { ButtonLink } from '@/components/ui/ButtonLink'
 import type { DetailPage, Section } from '@/content/types'
 import { faqJsonLd, serviceJsonLd } from '@/lib/jsonld'
 import { quoteHref } from '@/lib/site'
-
-function JsonLd({ data }: { data: unknown }) {
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
-}
+import { JsonLd } from '@/components/JsonLd'
 
 // Cards linking to each page in a section, with a photo or vehicle cut-out.
 export function PageCards({ title, pages, base }: { title: string; pages: DetailPage[]; base: string }) {

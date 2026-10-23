@@ -4,7 +4,8 @@ import { allSectionPages } from '@/lib/nav'
 import { listPosts } from '@/lib/posts'
 import { site } from '@/lib/site'
 
-export const revalidate = 3600
+// Built per request (cached by the CDN) so blog posts are listed without the database at build time.
+export const dynamic = 'force-dynamic'
 
 const staticPaths = ['/', '/about/', '/clients/', '/contact/', '/request-a-quote/', '/blog/', '/privacy-policy/', '/terms/']
 

@@ -22,9 +22,12 @@ export const Users: CollectionConfig = {
     },
   },
   access: {
-    // The very first user can be created from the admin panel; after that only admins add people.
+    // Only admins add people. The first account can be created from the admin panel in development;
+    // in production use `npm run seed:admin`, unless ALLOW_FIRST_USER_SIGNUP=true is set briefly,
+    // so nobody else can claim a freshly deployed site.
     create: async ({ req }) => {
       if (hasRole(req.user as { roles?: Role[] }, 'admin')) return true
+      if (isProd && process.env.ALLOW_FIRST_USER_SIGNUP !== 'true') return false
       const { totalDocs } = await req.payload.count({ collection: 'users', overrideAccess: true })
       return totalDocs === 0
     },

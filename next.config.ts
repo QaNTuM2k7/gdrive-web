@@ -41,6 +41,9 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+  // File tracing can miss sharp's native libvips libraries (seen on Windows), which Payload needs for
+  // image resizing. Include the installed platform package explicitly.
+  outputFileTracingIncludes: { '/**': ['./node_modules/@img/**/*'] },
   poweredByHeader: false,
   // Trailing slashes are added by src/proxy.ts for site pages only.
   skipTrailingSlashRedirect: true,

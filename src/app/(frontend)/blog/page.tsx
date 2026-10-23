@@ -8,7 +8,8 @@ import type { Media } from '@/payload-types'
 import { formatDate, listPosts } from '@/lib/posts'
 import { pageMetadata } from '@/lib/seo'
 
-export const revalidate = 300
+// Rendered per request so new posts appear immediately and builds never need the database.
+export const dynamic = 'force-dynamic'
 
 export const metadata = pageMetadata({
   title: 'Corporate Mobility Insights & Updates | G DRIVE Blog',

@@ -19,7 +19,9 @@ const dirname = path.dirname(filename)
 const isProd = process.env.NODE_ENV === 'production'
 const serverURL = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3100').replace(/\/$/, '')
 
-if (isProd && (!process.env.PAYLOAD_SECRET || process.env.PAYLOAD_SECRET.length < 32)) {
+const isBuild = process.env.NEXT_PHASE === 'phase-production-build'
+
+if (isProd && !isBuild && (!process.env.PAYLOAD_SECRET || process.env.PAYLOAD_SECRET.length < 32)) {
   throw new Error('PAYLOAD_SECRET must be set to a random string of at least 32 characters in production.')
 }
 

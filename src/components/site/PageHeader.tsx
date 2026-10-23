@@ -8,6 +8,7 @@ import { ParallaxImage } from '@/components/motion/ParallaxImage'
 import { RevealText } from '@/components/motion/RevealText'
 import type { Img } from '@/content/types'
 import { breadcrumbJsonLd } from '@/lib/jsonld'
+import { JsonLd } from '@/components/JsonLd'
 
 export type Crumb = { label: string; href: string }
 
@@ -34,10 +35,7 @@ export function PageHeader({
 
   return (
     <section data-section={crumbs[crumbs.length - 1]?.label ?? 'Overview'} className="on-blue border-b border-rule-on-blue">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(trail)) }}
-      />
+      <JsonLd data={breadcrumbJsonLd(trail)} />
       <div className="frame">
         <nav aria-label="Breadcrumb" className="border-b border-rule-on-blue px-4 py-3 sm:px-6 lg:px-10">
           <ol className="flex flex-wrap items-center gap-1 font-mono text-xs uppercase tracking-[0.08em] text-on-blue-soft">

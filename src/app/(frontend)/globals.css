@@ -1,0 +1,193 @@
+@import 'tailwindcss';
+
+/*
+ * G DRIVE design tokens.
+ * Brand blue (#1c58ff) is sampled from the brochure; gold comes from the "DRIVE" wordmark.
+ * Paper sections flip to deep navy in dark mode; brand-blue sections stay blue in both modes.
+ */
+:root {
+  --blue: #1c58ff;
+  --blue-deep: #0d2a8c;
+  --navy: #0a1640;
+  --gold: #f5b301;
+  --cream: #f4f2df;
+
+  --paper: var(--cream);
+  --paper-2: #ebe8cf;
+  --ink: var(--navy);
+  --ink-soft: #3a4670;
+  --link: var(--blue);
+  --danger: #b42318;
+  --field: #fbfaf1;
+  --rule: rgb(10 22 64 / 0.18);
+  --rule-strong: rgb(10 22 64 / 0.32);
+  --on-blue: #f4f2df;
+  --on-blue-soft: rgb(244 242 223 / 0.78);
+  --rule-on-blue: rgb(244 242 223 / 0.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #081130;
+    --paper-2: #0d1a44;
+    --ink: #f4f2df;
+    --ink-soft: #b9bed6;
+    --link: #8eaaff;
+    --danger: #ff9a8a;
+    --field: #0d1a44;
+    --rule: rgb(244 242 223 / 0.14);
+    --rule-strong: rgb(244 242 223 / 0.28);
+  }
+}
+
+@theme inline {
+  --color-blue: var(--blue);
+  --color-blue-deep: var(--blue-deep);
+  --color-navy: var(--navy);
+  --color-gold: var(--gold);
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-link: var(--link);
+  --color-danger: var(--danger);
+  --color-field: var(--field);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-on-blue: var(--on-blue);
+  --color-on-blue-soft: var(--on-blue-soft);
+  --color-rule-on-blue: var(--rule-on-blue);
+
+  --font-display: var(--font-archivo), 'Arial Narrow', system-ui, sans-serif;
+  --font-sans: var(--font-hanken), 'Segoe UI', system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, Consolas, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  /* The framed column every section sits in, echoing a route map grid. */
+  .frame {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1400px;
+    border-inline: 1px solid var(--frame-rule, var(--rule));
+  }
+  .on-blue {
+    --frame-rule: var(--rule-on-blue);
+    background: var(--blue);
+    color: var(--on-blue);
+  }
+  .on-deep {
+    --frame-rule: var(--rule-on-blue);
+    background: var(--blue-deep);
+    color: var(--on-blue);
+  }
+  .display {
+    font-family: var(--font-display);
+    font-stretch: 112%;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .wide {
+    font-stretch: 118%;
+  }
+  .condensed {
+    font-stretch: 85%;
+  }
+}
+
+/* Lane markings: dashed lines that drift like traffic. Static under reduced motion. */
+.lane {
+  height: var(--lane-h, 10px);
+  width: 200%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    currentColor 0 var(--dash, 120px),
+    transparent var(--dash, 120px) calc(var(--dash, 120px) + var(--gap, 60px))
+  );
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lane {
+    animation: lane-drift var(--speed, 14s) linear infinite;
+    animation-direction: var(--dir, normal);
+  }
+}
+@keyframes lane-drift {
+  to {
+    transform: translateX(calc(-1 * (var(--dash, 120px) + var(--gap, 60px)) * 4));
+  }
+}
+
+/* Client logo marquee */
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track {
+    animation: marquee 48s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Reveal on scroll where supported; content stays visible everywhere else. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+/* Hero load-in */
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--delay, 0ms);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}

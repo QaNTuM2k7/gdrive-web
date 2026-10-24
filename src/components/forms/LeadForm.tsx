@@ -239,7 +239,7 @@ export function LeadForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="group inline-flex h-14 items-center justify-center gap-3 whitespace-nowrap bg-gold px-8 font-mono text-sm font-medium uppercase tracking-[0.08em] text-navy transition-[background-color,transform] hover:bg-[#ffc31f] active:translate-y-px disabled:cursor-wait disabled:opacity-80"
+          className="group inline-flex h-14 items-center justify-center gap-3 whitespace-nowrap bg-gold px-8 font-mono text-sm font-medium uppercase tracking-[0.08em] text-navy transition-[background-color,transform] hover:bg-gold-dark active:translate-y-px disabled:cursor-wait disabled:opacity-80"
         >
           {isSubmitting ? (
             <>

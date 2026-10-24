@@ -2,41 +2,70 @@
 
 /*
  * G DRIVE design tokens.
- * Brand blue (#1c58ff) is sampled from the brochure; gold comes from the "DRIVE" wordmark.
- * Paper sections flip to deep navy in dark mode; brand-blue sections stay blue in both modes.
+ * The palette below is the approved brand palette. The semantic tokens after it map site roles onto it.
+ * Paper sections flip to navy in dark mode; primary-blue sections stay blue in both modes.
  */
 :root {
-  --blue: #1c58ff;
-  --blue-deep: #0d2a8c;
-  --navy: #0a1640;
-  --gold: #f5b301;
-  --cream: #f4f2df;
+  /* Primary */
+  --primary-blue: #4169d8;
+  --deep-blue: #243d82;
+  --navy: #0b1228;
+  --secondary-navy: #172448;
 
+  /* Accents */
+  --gold: #e5b957;
+  --gold-dark: #d9a72e;
+
+  /* Backgrounds */
+  --white: #ffffff;
+  --cream: #f3f0e4;
+  --off-white: #f8f6ef;
+
+  /* Supporting colours */
+  --slate-blue: #46516f;
+  --periwinkle: #91a8e0;
+  --muted-lavender: #aeb7d0;
+  --muted-red: #a84238;
+  --dusty-coral: #e69a8e;
+
+  /* Text */
+  --text-dark: #17191f;
+  --text-light: #f8f6ef;
+  --text-muted: #c6ccdb;
+
+  /* Borders */
+  --border-dark: #29334d;
+
+  /* Semantic tokens used by the components */
+  --blue: var(--primary-blue);
+  --blue-deep: var(--deep-blue);
   --paper: var(--cream);
-  --paper-2: #ebe8cf;
-  --ink: var(--navy);
-  --ink-soft: #3a4670;
-  --link: var(--blue);
-  --danger: #b42318;
-  --field: #fbfaf1;
-  --rule: rgb(10 22 64 / 0.18);
-  --rule-strong: rgb(10 22 64 / 0.32);
-  --on-blue: #f4f2df;
-  --on-blue-soft: rgb(244 242 223 / 0.78);
-  --rule-on-blue: rgb(244 242 223 / 0.28);
+  --paper-2: var(--off-white);
+  --ink: var(--text-dark);
+  --ink-soft: var(--slate-blue);
+  /* Deep blue for text links: primary blue is under 4.5:1 on cream at small sizes. */
+  --link: var(--deep-blue);
+  --danger: var(--muted-red);
+  --field: var(--off-white);
+  --rule: rgb(41 51 77 / 0.2); /* border-dark at 20% */
+  --rule-strong: rgb(41 51 77 / 0.38);
+  --on-blue: var(--text-light);
+  /* Body text on primary blue stays full text-light to keep 4.5:1; deep-blue panels use text-muted. */
+  --on-blue-soft: var(--text-light);
+  --rule-on-blue: rgb(248 246 239 / 0.3); /* text-light at 30% */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #081130;
-    --paper-2: #0d1a44;
-    --ink: #f4f2df;
-    --ink-soft: #b9bed6;
-    --link: #8eaaff;
-    --danger: #ff9a8a;
-    --field: #0d1a44;
-    --rule: rgb(244 242 223 / 0.14);
-    --rule-strong: rgb(244 242 223 / 0.28);
+    --paper: var(--navy);
+    --paper-2: var(--secondary-navy);
+    --ink: var(--text-light);
+    --ink-soft: var(--muted-lavender);
+    --link: var(--periwinkle);
+    --danger: var(--dusty-coral);
+    --field: var(--secondary-navy);
+    --rule: var(--border-dark);
+    --rule-strong: var(--slate-blue);
   }
 }
 
@@ -45,6 +74,8 @@
   --color-blue-deep: var(--blue-deep);
   --color-navy: var(--navy);
   --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-text-muted: var(--text-muted);
   --color-cream: var(--cream);
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
@@ -99,6 +130,8 @@
   }
   .on-deep {
     --frame-rule: var(--rule-on-blue);
+    /* text-muted reads at over 6:1 on deep blue, unlike on primary blue. */
+    --on-blue-soft: var(--text-muted);
     background: var(--blue-deep);
     color: var(--on-blue);
   }

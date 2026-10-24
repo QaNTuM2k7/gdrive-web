@@ -110,7 +110,7 @@ export function SiteMenu({ tree, phone, telHref }: { tree: NavGroup[]; phone: st
                   <Link
                     href="/request-a-quote/"
                     onClick={close}
-                    className="inline-flex h-12 items-center bg-gold px-6 font-mono text-[13px] font-medium uppercase tracking-[0.08em] text-navy hover:bg-[#ffc31f]"
+                    className="inline-flex h-12 items-center bg-gold px-6 font-mono text-[13px] font-medium uppercase tracking-[0.08em] text-navy hover:bg-gold-dark"
                   >
                     Request a Quote
                   </Link>

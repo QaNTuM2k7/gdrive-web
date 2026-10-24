@@ -5,7 +5,7 @@ import type { ComponentProps } from 'react'
 type Variant = 'gold' | 'outline-light' | 'outline-dark' | 'navy'
 
 const variants: Record<Variant, string> = {
-  gold: 'bg-gold text-navy hover:bg-[#ffc31f]',
+  gold: 'bg-gold text-navy hover:bg-gold-dark',
   // Ink on paper: navy in light mode, cream in dark mode.
   navy: 'bg-ink text-paper hover:bg-blue hover:text-cream',
   'outline-light': 'border border-on-blue/60 text-on-blue hover:bg-on-blue hover:text-blue',

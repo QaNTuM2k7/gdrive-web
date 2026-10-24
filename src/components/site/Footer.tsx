@@ -10,7 +10,7 @@ export function Footer() {
   const people = navTree.find((g) => g.label === 'People & Excellence')
 
   return (
-    <footer className="bg-navy text-cream" style={{ ['--frame-rule' as string]: 'rgb(244 242 223 / 0.14)' }}>
+    <footer className="bg-navy text-cream" style={{ ['--frame-rule' as string]: 'var(--border-dark)' }}>
       <div className="frame grid grid-cols-1 lg:grid-cols-12">
         <div className="flex flex-col gap-6 border-b border-cream/15 p-6 md:p-10 lg:col-span-4 lg:border-r">
           <Logo />
@@ -61,7 +61,7 @@ export function Footer() {
             <p className="display text-xl font-bold leading-snug">Planning employee transport or corporate travel?</p>
             <Link
               href={quoteHref()}
-              className="inline-flex h-11 w-fit items-center bg-gold px-5 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-navy hover:bg-[#ffc31f]"
+              className="inline-flex h-11 w-fit items-center bg-gold px-5 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-navy hover:bg-gold-dark"
             >
               Request a Quote
             </Link>

@@ -9,8 +9,8 @@ type Lane = { y: number; dash: number; gap: number; speed: number; offset: numbe
 // and light up gold near the pointer like headlights. Pauses off-screen; one static frame under reduced motion.
 export function LaneCanvas({
   className = '',
-  color = '#f4f2df',
-  accent = '#f5b301',
+  color = '#f8f6ef',
+  accent = '#e5b957',
   laneGap = 30,
   thickness = 10,
 }: {

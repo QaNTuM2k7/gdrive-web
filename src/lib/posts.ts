@@ -5,6 +5,8 @@ import { getPayload } from 'payload'
 
 import type { Post } from '@/payload-types'
 
+import { siteUrl } from './siteUrl'
+
 // Published posts for the public site. Failures (for example no database during a build)
 // return empty results so pages still render and fill in on the next revalidation.
 
@@ -49,7 +51,7 @@ export function mediaSrc(url?: string | null): string | undefined {
   if (!url) return undefined
   try {
     const u = new URL(url, 'http://local')
-    const site = new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3100')
+    const site = new URL(siteUrl)
     if (u.origin === 'http://local' || u.origin === site.origin) return `${u.pathname}${u.search}`
     return url
   } catch {

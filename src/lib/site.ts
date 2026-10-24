@@ -1,10 +1,12 @@
+import { siteUrl } from './siteUrl'
+
 // Site-wide settings. These move to the Payload "Site settings" global once the CMS layer is wired up.
 
 export const site = {
   name: 'G DRIVE',
   legalName: 'New Travel Liines India Private Limited',
   tagline: 'Safe. Intelligent. Reliable.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3100',
+  url: siteUrl,
   address: {
     street: 'Plot No. 42 Part, Kalaimagal Nagar, 2nd Main Road, Ekkattuthangal',
     locality: 'Chennai',

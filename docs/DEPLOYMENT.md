@@ -52,9 +52,16 @@ docker run -d -p 3000:3000 --env-file .env.production \
 
 ## Option B: Vercel
 
-1. Import the repository and set every variable above in the project settings.
-2. Use an external Postgres (for example Neon) and S3-compatible storage (local disk is not persistent on Vercel).
-3. No build command changes are needed. Vercel ignores `output: 'standalone'`.
+1. Import the GitHub repository in Vercel (framework preset: Next.js, no build settings to change).
+2. **Storage tab:** add a Neon Postgres database (provides `DATABASE_URL`) and a Blob store
+   (provides `BLOB_READ_WRITE_TOKEN`, used for uploaded media because Vercel has no persistent disk).
+3. **Environment variables:** `PAYLOAD_SECRET`, `TURNSTILE_SECRET_KEY`, `NEXT_PUBLIC_TURNSTILE_SITE_KEY`,
+   plus the optional email variables. `NEXT_PUBLIC_SITE_URL` can stay empty; the project's production
+   domain is used automatically. Leave `NEXT_PUBLIC_ALLOW_INDEXING` unset on staging.
+4. Deploy. Migrations run on the first request. Create the admin with `npm run seed:admin` from a
+   local checkout using the Neon `DATABASE_URL`.
+5. The admin works on the production domain only: preview deployments have different URLs, which the
+   CSRF and CORS settings reject.
 
 ## Database migrations
 

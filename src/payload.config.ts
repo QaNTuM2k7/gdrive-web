@@ -2,6 +2,7 @@ import { postgresAdapter } from '@payloadcms/db-postgres'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { s3Storage } from '@payloadcms/storage-s3'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { buildConfig, type Plugin } from 'payload'
 import sharp from 'sharp'
@@ -11,13 +12,14 @@ import { Leads } from './collections/Leads'
 import { Media } from './collections/Media'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
+import { siteUrl } from './lib/siteUrl'
 import { migrations } from './migrations'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 const isProd = process.env.NODE_ENV === 'production'
-const serverURL = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3100').replace(/\/$/, '')
+const serverURL = siteUrl
 
 const isBuild = process.env.NEXT_PHASE === 'phase-production-build'
 
@@ -41,6 +43,17 @@ if (process.env.S3_BUCKET) {
           secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
         },
       },
+    }),
+  )
+}
+
+// On Vercel (no persistent disk), uploads go to Vercel Blob when its token is present. Files are still
+// served through /api/media, so access control and the CSP stay the same.
+if (process.env.BLOB_READ_WRITE_TOKEN && !process.env.S3_BUCKET) {
+  plugins.push(
+    vercelBlobStorage({
+      collections: { media: true },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
     }),
   )
 }

@@ -27,13 +27,16 @@ export function SiteMenu({ tree, phone, telHref }: { tree: NavGroup[]; phone: st
       }
     }
     document.addEventListener('keydown', onKey)
-    document.body.style.overflow = 'hidden'
-    lenis?.stop()
-    panelRef.current?.querySelector<HTMLElement>('a')?.focus()
+    // Lock scrolling in one place only. Setting overflow on <body> while Lenis clips <html> turns <body>
+    // into its own scroll container, which detaches the sticky header from the viewport.
+    const root = document.documentElement
+    if (lenis) lenis.stop()
+    else root.style.overflow = 'hidden'
+    panelRef.current?.querySelector<HTMLElement>('a')?.focus({ preventScroll: true })
     return () => {
       document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-      lenis?.start()
+      if (lenis) lenis.start()
+      else root.style.overflow = ''
     }
   }, [open, lenis])
 

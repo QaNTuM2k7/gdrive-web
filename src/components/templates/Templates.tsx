@@ -7,7 +7,6 @@ import { ClosingCta } from '@/components/home/ClosingCta'
 import { Faq } from '@/components/home/Faq'
 import { JsonLd } from '@/components/JsonLd'
 import { RevealText } from '@/components/motion/RevealText'
-import { SectionIndicator } from '@/components/motion/SectionIndicator'
 import { PageHeader } from '@/components/site/PageHeader'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import type { DetailPage, Section } from '@/content/types'
@@ -36,39 +35,37 @@ export function PageCards({
   const lgRemainder = (3 - (pages.length % 3)) % 3
   const smRemainder = pages.length % 2
   return (
-    <section data-section={title} className="border-b border-rule">
-      <div className="frame">
-        <div className="border-b border-rule px-4 pb-10 pt-16 sm:px-6 md:pt-20 lg:px-10">
-          <RevealText text={title} className="display max-w-[22ch] text-3xl font-extrabold md:text-5xl" />
-        </div>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="bg-paper-2">
+      <div className="frame px-4 py-16 sm:px-6 md:py-20 lg:px-10">
+        <RevealText text={title} className="display mb-10 max-w-[22ch] text-3xl font-extrabold leading-tight md:text-4xl" />
+        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {pages.map((p) => (
-            <li key={p.slug} className="border-b border-rule sm:border-r sm:[&:nth-child(2n)]:border-r-0 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0">
-              <Link href={`${base}/${p.slug}/`} className="group flex h-full flex-col">
-                <div className={`relative aspect-[16/10] overflow-hidden border-b border-rule ${p.hero.fit === 'contain' ? 'bg-white' : ''}`}>
+            <li key={p.slug} className="reveal">
+              <Link href={`${base}/${p.slug}/`} className="card group flex h-full flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+                <div className={`relative aspect-[16/10] overflow-hidden ${p.hero.fit === 'contain' ? 'bg-white' : ''}`}>
                   <Image
                     src={p.hero.src}
                     alt=""
                     fill
                     placeholder="blur"
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
                     style={p.hero.focus ? { objectPosition: p.hero.focus } : undefined}
                     className={`transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05] ${
                       p.hero.fit === 'contain' ? 'object-contain p-6' : 'object-cover'
                     }`}
                   />
                   {p.status && p.status !== 'live' && (
-                    <span className="absolute left-4 top-4 bg-navy px-2 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-gold">
+                    <span className="absolute left-4 top-4 rounded-full bg-navy px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-gold">
                       {p.status === 'pilot' ? 'In pilot' : 'In development'}
                     </span>
                   )}
                 </div>
-                <div className="flex flex-1 flex-col gap-3 p-6 md:p-8">
-                  <h3 className="display flex items-start justify-between gap-4 text-2xl font-bold group-hover:text-link">
+                <div className="flex flex-1 flex-col gap-3 p-6">
+                  <h3 className="display flex items-start justify-between gap-4 text-xl font-bold group-hover:text-link">
                     {p.label}
                     <ArrowUpRightIcon
                       aria-hidden
-                      className="mt-1 size-6 shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      className="mt-1 size-5 shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     />
                   </h3>
                   <p className="line-clamp-3 text-ink-soft">{p.intro}</p>
@@ -78,13 +75,13 @@ export function PageCards({
           ))}
           {lgRemainder > 0 && (
             <li
-              className={`on-blue flex-col justify-between gap-8 border-b border-rule-on-blue p-6 md:p-8 ${
+              className={`flex-col justify-between gap-8 rounded-2xl bg-blue p-6 text-on-blue shadow-card md:p-8 ${
                 smRemainder ? 'flex' : 'hidden lg:flex'
               } ${lgRemainder === 2 ? 'lg:col-span-2' : 'lg:col-span-1'}`}
             >
               <div className="flex flex-col gap-3">
                 <h3 className="display text-2xl font-bold">{cta.title}</h3>
-                <p className="max-w-[40ch] text-on-blue-soft">{cta.body}</p>
+                <p className="max-w-[40ch]">{cta.body}</p>
               </div>
               <div>
                 <ButtonLink href={quoteHref(service)}>Request a Quote</ButtonLink>
@@ -99,20 +96,18 @@ export function PageCards({
 
 function Related({ links }: { links: { href: string; label: string }[] }) {
   return (
-    <nav aria-label="Related pages" className="border-b border-rule">
-      <div className="frame grid grid-cols-1 md:grid-cols-12">
-        <h2 className="flex items-center border-b border-rule px-4 py-6 font-mono text-xs uppercase tracking-[0.12em] text-ink-soft sm:px-6 md:col-span-3 md:border-b-0 md:border-r lg:px-10">
-          Related
-        </h2>
-        <ul className="grid grid-cols-1 sm:grid-cols-3 md:col-span-9">
+    <nav aria-label="Related pages" className="bg-paper">
+      <div className="frame flex flex-col gap-5 px-4 py-12 sm:px-6 md:flex-row md:items-center lg:px-10">
+        <h2 className="eyebrow shrink-0 md:w-40">Related</h2>
+        <ul className="flex flex-wrap gap-3">
           {links.map((l) => (
-            <li key={l.href} className="border-b border-rule last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
+            <li key={l.href}>
               <Link
                 href={l.href}
-                className="group flex h-full items-center justify-between gap-3 px-6 py-6 transition-colors hover:bg-blue hover:text-on-blue"
+                className="card group inline-flex items-center gap-3 px-5 py-3 font-semibold transition-colors hover:bg-blue hover:text-on-blue"
               >
-                <span className="display text-lg font-bold">{l.label}</span>
-                <ArrowUpRightIcon aria-hidden className="size-5 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                {l.label}
+                <ArrowUpRightIcon aria-hidden className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             </li>
           ))}
@@ -127,7 +122,6 @@ export function DetailTemplate({ page, section }: { page: DetailPage; section: {
   return (
     <>
       <JsonLd data={[serviceJsonLd({ name: page.h1, description: page.seo.description, path }), ...(page.faqs?.length ? [faqJsonLd(page.faqs)] : [])]} />
-      <SectionIndicator />
       <PageHeader
         title={page.h1}
         intro={<p>{page.intro}</p>}
@@ -152,7 +146,6 @@ export function HubTemplate({ section }: { section: Section }) {
   return (
     <>
       {section.faqs?.length ? <JsonLd data={faqJsonLd(section.faqs)} /> : null}
-      <SectionIndicator />
       <PageHeader
         title={section.h1}
         intro={<p>{section.intro}</p>}

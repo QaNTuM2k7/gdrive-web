@@ -22,6 +22,13 @@ export const site = {
     { name: 'Chakravarthy G', role: 'Vice President', phone: '+91 91767 97906' },
   ],
   certification: 'ISO 9001:2015',
+  // From the approved homepage design. TODO(client): confirm the inbox exists.
+  email: 'info@gdrive.in',
+  // TODO(client): add the real profile URLs; icons link to "#" until then.
+  social: [
+    { name: 'LinkedIn', href: '' },
+    { name: 'YouTube', href: '' },
+  ],
 } as const
 
 export const primaryContact = site.contacts[0]

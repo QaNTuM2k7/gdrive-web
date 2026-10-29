@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Archivo, Hanken_Grotesk, JetBrains_Mono } from 'next/font/google'
+import { Archivo, DM_Serif_Display, Hanken_Grotesk, JetBrains_Mono } from 'next/font/google'
 import React from 'react'
 
 import { Footer } from '@/components/site/Footer'
@@ -12,6 +12,14 @@ const archivo = Archivo({
   subsets: ['latin'],
   axes: ['wdth'],
   variable: '--font-archivo',
+  display: 'swap',
+})
+
+// Serif for banner headlines, as in the approved homepage design.
+const dmSerif = DM_Serif_Display({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-dm-serif',
   display: 'swap',
 })
 
@@ -53,7 +61,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${archivo.variable} ${hanken.variable} ${jetbrains.variable}`}>
+    <html lang="en-IN" className={`${archivo.variable} ${dmSerif.variable} ${hanken.variable} ${jetbrains.variable}`}>
       <body className="min-h-dvh">
         <a
           href="#main"

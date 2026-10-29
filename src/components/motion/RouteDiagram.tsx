@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'motion/react'
 import { useEffect, useId, useRef } from 'react'
 
 type Route = { d: string; rail?: boolean; draw?: boolean }
@@ -153,18 +152,7 @@ export function RouteDiagram({ name, className = '' }: { name: keyof typeof diag
             <path d={r.d} stroke="currentColor" strokeWidth="4" strokeDasharray="14 10" fill="none" />
           </g>
         ) : (
-          <motion.path
-            key={i}
-            d={r.d}
-            stroke="currentColor"
-            strokeWidth="6"
-            strokeLinejoin="miter"
-            fill="none"
-            initial={{ pathLength: 0 }}
-            whileInView={{ pathLength: 1 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 1.4, delay: 0.15 * i, ease: [0.65, 0, 0.35, 1] }}
-          />
+          <path key={i} d={r.d} stroke="currentColor" strokeWidth="6" strokeLinejoin="miter" fill="none" />
         ),
       )}
 

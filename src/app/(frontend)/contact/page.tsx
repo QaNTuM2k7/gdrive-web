@@ -30,9 +30,9 @@ export default function ContactPage() {
         }
       />
 
-      <section aria-labelledby="office-title" className="border-b border-rule">
-        <div className="frame grid grid-cols-1 lg:grid-cols-12">
-          <div className="flex flex-col gap-6 border-b border-rule px-4 py-10 sm:px-6 lg:col-span-5 lg:border-b-0 lg:border-r lg:px-10 lg:py-14">
+      <section aria-labelledby="office-title" className="bg-paper-2">
+        <div className="frame grid grid-cols-1 gap-6 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-12 lg:px-10">
+          <div className="card flex flex-col gap-6 p-6 md:p-8 lg:col-span-5">
             <MapPinIcon aria-hidden weight="light" className="size-10 text-link" />
             <h2 id="office-title" className="display text-3xl font-extrabold">
               Corporate office
@@ -54,19 +54,14 @@ export default function ContactPage() {
             </a>
           </div>
 
-          <div className="lg:col-span-7">
-            <h2 className="border-b border-rule px-4 py-6 font-mono text-xs uppercase tracking-[0.12em] text-ink-soft sm:px-6 lg:px-10">
-              Business contacts
-            </h2>
-            <ul className="grid grid-cols-1 sm:grid-cols-2">
-              {site.contacts.map((c, i) => (
-                <li
-                  key={c.phone}
-                  className={`border-b border-rule ${i % 2 === 0 ? 'sm:border-r' : ''} ${i >= 2 ? 'sm:border-b-0' : ''}`}
-                >
+          <div className="flex flex-col gap-4 lg:col-span-7">
+            <h2 className="eyebrow">Business contacts</h2>
+            <ul className="grid flex-1 grid-cols-1 gap-6 sm:grid-cols-2">
+              {site.contacts.map((c) => (
+                <li key={c.phone} className="card overflow-hidden">
                   <a
                     href={telHref(c.phone)}
-                    className="group flex h-full flex-col gap-2 p-6 transition-colors hover:bg-paper-2 md:p-8"
+                    className="group flex h-full flex-col gap-2 p-6 transition-transform duration-300 hover:-translate-y-0.5 md:p-8"
                   >
                     <span className="display text-xl font-bold">{c.name}</span>
                     <span className="text-sm text-ink-soft">{c.role}</span>
@@ -82,9 +77,9 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section aria-labelledby="enquiry-title" className="border-b border-rule">
-        <div className="frame grid grid-cols-1 lg:grid-cols-12">
-          <div className="flex flex-col gap-4 border-b border-rule px-4 py-10 sm:px-6 lg:col-span-4 lg:border-b-0 lg:border-r lg:px-10 lg:py-14">
+      <section aria-labelledby="enquiry-title" className="bg-paper">
+        <div className="frame grid grid-cols-1 gap-8 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-12 lg:px-10">
+          <div className="flex flex-col gap-4 lg:col-span-4">
             <div className="flex flex-col gap-4 lg:sticky lg:top-24">
               <h2 id="enquiry-title" className="display text-3xl font-extrabold">
                 Send us an enquiry
@@ -95,7 +90,7 @@ export default function ContactPage() {
               </p>
             </div>
           </div>
-          <div className="relative px-4 py-10 sm:px-6 lg:col-span-8 lg:px-12 lg:py-14">
+          <div className="card relative p-6 md:p-10 lg:col-span-8">
             <LeadForm formType="contact" submitLabel="Send enquiry" />
           </div>
         </div>

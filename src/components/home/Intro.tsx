@@ -6,9 +6,9 @@ import { site } from '@/lib/site'
 
 export function Intro() {
   return (
-    <section data-section="About" aria-labelledby="intro-title" className="border-b border-rule">
-      <div className="frame grid grid-cols-1 lg:grid-cols-12">
-        <div className="reveal px-4 py-14 sm:px-6 md:py-20 lg:col-span-8 lg:border-r lg:border-rule lg:px-10">
+    <section data-section="About" aria-labelledby="intro-title" className="bg-paper">
+      <div className="frame grid grid-cols-1 gap-10 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-12 lg:px-10">
+        <div className="reveal lg:col-span-8">
           <RevealText
             id="intro-title"
             text="Moving people. Connecting possibilities."
@@ -19,13 +19,13 @@ export function Intro() {
             institutions and public transit networks.
           </p>
         </div>
-        <div className="reveal flex flex-col justify-between gap-10 border-t border-rule px-4 py-10 sm:px-6 lg:col-span-4 lg:border-t-0 lg:px-10 lg:py-20">
+        <div className="reveal card flex flex-col justify-between gap-8 p-6 md:p-8 lg:col-span-4">
           <p className="max-w-[40ch] leading-relaxed text-ink-soft">
             Our approach goes beyond transportation. We build an integrated mobility ecosystem connecting
             people, vehicles, technology and operations.
           </p>
           <div className="flex flex-col gap-6">
-            <div className="flex items-center gap-3 border-y border-rule py-4">
+            <div className="flex items-center gap-3 rounded-xl bg-paper-2 p-4">
               <SealCheckIcon weight="duotone" className="size-8 text-link" aria-hidden />
               <span className="text-sm">
                 <strong className="block font-semibold">{site.certification} certified</strong>

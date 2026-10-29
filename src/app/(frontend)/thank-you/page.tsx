@@ -1,8 +1,9 @@
 import { PhoneIcon } from '@phosphor-icons/react/dist/ssr'
 import type { Metadata } from 'next'
+import Image from 'next/image'
 
-import { LaneCanvas } from '@/components/motion/LaneCanvas'
 import { ButtonLink } from '@/components/ui/ButtonLink'
+import pin from '../../../../public/images/brand/pin-white.png'
 import { primaryContact, telHref } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -50,8 +51,8 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
             </a>
           </div>
         </div>
-        <div className="relative hidden min-h-[360px] p-10 lg:col-span-5 lg:block">
-          <LaneCanvas laneGap={34} thickness={14} />
+        <div className="hidden items-center justify-center p-10 lg:col-span-5 lg:flex">
+          <Image src={pin} alt="" sizes="280px" className="h-auto w-[240px] opacity-90" />
         </div>
       </div>
     </section>

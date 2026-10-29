@@ -47,12 +47,16 @@
   --link: var(--deep-blue);
   --danger: var(--muted-red);
   --field: var(--off-white);
-  --rule: rgb(41 51 77 / 0.2); /* border-dark at 20% */
+  /* Layout divider lines are switched off: the design uses cards and spacing instead of grid lines.
+     rule-strong stays visible because form fields need an outline. */
+  --rule: transparent;
   --rule-strong: rgb(41 51 77 / 0.38);
+  --card: var(--white);
+  --card-shadow: 0 1px 2px rgb(11 18 40 / 0.05), 0 10px 30px -12px rgb(11 18 40 / 0.18);
   --on-blue: var(--text-light);
   /* Body text on primary blue stays full text-light to keep 4.5:1; deep-blue panels use text-muted. */
   --on-blue-soft: var(--text-light);
-  --rule-on-blue: rgb(248 246 239 / 0.3); /* text-light at 30% */
+  --rule-on-blue: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -64,8 +68,10 @@
     --link: var(--periwinkle);
     --danger: var(--dusty-coral);
     --field: var(--secondary-navy);
-    --rule: var(--border-dark);
     --rule-strong: var(--slate-blue);
+    --card: var(--secondary-navy);
+    --eyebrow-color: var(--dusty-coral);
+    --card-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -12px rgb(0 0 0 / 0.5);
   }
 }
 
@@ -76,6 +82,9 @@
   --color-gold: var(--gold);
   --color-gold-dark: var(--gold-dark);
   --color-text-muted: var(--text-muted);
+  --color-text-dark: var(--text-dark);
+  --color-deep-blue: var(--deep-blue);
+  --color-muted-red: var(--muted-red);
   --color-cream: var(--cream);
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
@@ -89,8 +98,11 @@
   --color-on-blue: var(--on-blue);
   --color-on-blue-soft: var(--on-blue-soft);
   --color-rule-on-blue: var(--rule-on-blue);
+  --color-card: var(--card);
+  --shadow-card: var(--card-shadow);
 
   --font-display: var(--font-archivo), 'Arial Narrow', system-ui, sans-serif;
+  --font-serif: var(--font-dm-serif), Georgia, 'Times New Roman', serif;
   --font-sans: var(--font-hanken), 'Segoe UI', system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, Consolas, monospace;
 }
@@ -116,20 +128,37 @@
 }
 
 @layer components {
-  /* The framed column every section sits in, echoing a route map grid. */
+  /* The centred content column every section sits in. */
   .frame {
     margin-inline: auto;
     width: 100%;
     max-width: 1400px;
-    border-inline: 1px solid var(--frame-rule, var(--rule));
+  }
+  /* Raised surface for repeated items (solution, fleet and feature cards). */
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+  }
+  /* Small uppercase label above a section heading. */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    /* Muted red on light sections (gold is too faint on cream); gold on blue sections. */
+    color: var(--eyebrow-color, var(--muted-red));
   }
   .on-blue {
     --frame-rule: var(--rule-on-blue);
+    --eyebrow-color: var(--gold);
     background: var(--blue);
     color: var(--on-blue);
   }
   .on-deep {
     --frame-rule: var(--rule-on-blue);
+    --eyebrow-color: var(--gold);
     /* text-muted reads at over 6:1 on deep blue, unlike on primary blue. */
     --on-blue-soft: var(--text-muted);
     background: var(--blue-deep);

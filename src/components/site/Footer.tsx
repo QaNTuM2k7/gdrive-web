@@ -1,86 +1,116 @@
+import { EnvelopeSimpleIcon, LinkedinLogoIcon, MapPinIcon, PhoneIcon, YoutubeLogoIcon } from '@phosphor-icons/react/dist/ssr'
+import Image from 'next/image'
 import Link from 'next/link'
 
-import { navTree } from '@/lib/nav'
-import { quoteHref, site, telHref } from '@/lib/site'
-import { Logo } from './Logo'
+import { site, telHref } from '@/lib/site'
+import logoColor from '../../../public/images/brand/logo-horizontal.png'
 
+const quickLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Our Fleet', href: '/fleet/' },
+  { label: 'Our Solutions', href: '/solutions/' },
+  { label: 'Industries', href: '/clients/' },
+  { label: 'Technology', href: '/technology/' },
+  { label: 'About Us', href: '/about/' },
+  { label: 'Safety', href: '/safety/' },
+  { label: 'Contact', href: '/contact/' },
+]
+
+const socialIcons = { LinkedIn: LinkedinLogoIcon, YouTube: YoutubeLogoIcon } as const
+
+// Footer layout from the approved homepage design: brand, quick links, contact details and social links.
 export function Footer() {
   const year = new Date().getFullYear()
-  const columns = navTree.filter((g) => g.label !== 'People & Excellence')
-  const people = navTree.find((g) => g.label === 'People & Excellence')
 
   return (
-    <footer className="bg-navy text-cream" style={{ ['--frame-rule' as string]: 'var(--border-dark)' }}>
-      <div className="frame grid grid-cols-1 lg:grid-cols-12">
-        <div className="flex flex-col gap-6 border-b border-cream/15 p-6 md:p-10 lg:col-span-4 lg:border-r">
-          <Logo />
-          <p className="max-w-sm text-cream/75">
-            Enterprise mobility from {site.legalName}: employee transportation, corporate travel, shuttles and fleet
-            technology.
+    <footer className="bg-navy text-text-light">
+      <div className="frame grid grid-cols-1 gap-10 px-4 pb-10 pt-14 sm:px-6 md:grid-cols-2 lg:grid-cols-12 lg:px-10">
+        <div className="flex flex-col gap-4 lg:col-span-4">
+          <Link href="/" aria-label="G DRIVE home" className="w-fit">
+            <Image src={logoColor} alt="G DRIVE, Smart Urban Mobility" sizes="260px" className="h-auto w-[240px]" />
+          </Link>
+          <p className="text-sm text-text-light">
+            <strong className="font-semibold">Powered by:</strong> New Travel Liines India Pvt Ltd
           </p>
-          <address className="not-italic text-sm leading-relaxed text-cream/75">
-            {site.address.street},
-            <br />
-            {site.address.locality} {site.address.postalCode}, {site.address.region}, India
-          </address>
-          <div className="flex flex-col gap-3">
-            {site.contacts.slice(0, 2).map((c) => (
-              <div key={c.phone} className="text-sm">
-                <a href={telHref(c.phone)} className="font-mono text-cream hover:text-gold">
-                  {c.phone}
-                </a>
-                <span className="block text-cream/60">
-                  {c.name}, {c.role}
-                </span>
-              </div>
-            ))}
-          </div>
-          <p className="font-mono text-xs uppercase tracking-[0.1em] text-gold">An {site.certification} certified company</p>
+          <p className="text-sm text-text-muted">An {site.certification} certified company</p>
         </div>
 
-        <div className="grid grid-cols-2 border-b border-cream/15 sm:grid-cols-3 lg:col-span-8">
-          {columns.map((g) => (
-            <nav key={g.label} aria-label={g.label} className="flex flex-col gap-3 border-b border-r border-cream/15 p-6 md:p-8">
-              <Link href={g.href} className="mb-1 font-mono text-xs uppercase tracking-[0.1em] text-cream/55 hover:text-gold">
-                {g.label}
-              </Link>
-              {g.children.map((c) => (
-                <Link key={c.href} href={c.href} className="text-sm text-cream/85 hover:text-gold">
-                  {c.label}
+        <nav aria-label="Quick links" className="lg:col-span-3">
+          <h2 className="mb-4 font-display text-lg font-bold text-gold">Quick Links</h2>
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
+            {quickLinks.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="text-text-muted transition-colors hover:text-gold">
+                  {l.label}
                 </Link>
-              ))}
-              {g.label === 'Safety' &&
-                people?.children.map((c) => (
-                  <Link key={c.href} href={c.href} className="text-sm text-cream/85 hover:text-gold">
-                    {c.label}
-                  </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="lg:col-span-3">
+          <h2 className="mb-4 font-display text-lg font-bold text-gold">Contact Us</h2>
+          <ul className="flex flex-col gap-4 text-sm text-text-muted">
+            <li className="flex gap-3">
+              <MapPinIcon weight="fill" aria-hidden className="mt-0.5 size-5 shrink-0 text-gold" />
+              <address className="not-italic leading-relaxed">
+                {site.address.street}, {site.address.locality} {site.address.postalCode}, {site.address.region}, India
+              </address>
+            </li>
+            <li className="flex gap-3">
+              <PhoneIcon weight="fill" aria-hidden className="mt-0.5 size-5 shrink-0 text-gold" />
+              <span className="flex flex-col gap-1">
+                {site.contacts.slice(0, 2).map((c) => (
+                  <a key={c.phone} href={telHref(c.phone)} className="hover:text-gold">
+                    {c.phone}
+                  </a>
                 ))}
-            </nav>
-          ))}
-          <div className="flex flex-col justify-between gap-6 border-b border-r border-cream/15 p-6 md:p-8">
-            <p className="display text-xl font-bold leading-snug">Planning employee transport or corporate travel?</p>
-            <Link
-              href={quoteHref()}
-              className="inline-flex h-11 w-fit items-center bg-gold px-5 font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-navy hover:bg-gold-dark"
-            >
-              Request a Quote
-            </Link>
-          </div>
+              </span>
+            </li>
+            <li className="flex gap-3">
+              <EnvelopeSimpleIcon weight="fill" aria-hidden className="mt-0.5 size-5 shrink-0 text-gold" />
+              <a href={`mailto:${site.email}`} className="hover:text-gold">
+                {site.email}
+              </a>
+            </li>
+          </ul>
         </div>
 
-        <div className="flex flex-col gap-2 px-6 py-5 text-xs text-cream/55 sm:flex-row sm:justify-between md:px-10 lg:col-span-12">
-          <span>
-            &copy; {year} {site.legalName}
-          </span>
-          <span className="flex gap-5">
-            <Link href="/privacy-policy/" className="hover:text-cream">
-              Privacy policy
-            </Link>
-            <Link href="/terms/" className="hover:text-cream">
-              Terms
-            </Link>
-          </span>
+        <div className="lg:col-span-2">
+          <h2 className="mb-4 font-display text-lg font-bold text-gold">Follow Us</h2>
+          <ul className="flex gap-3">
+            {site.social.map((s) => {
+              const SocialIcon = socialIcons[s.name as keyof typeof socialIcons]
+              return (
+                <li key={s.name}>
+                  <a
+                    href={s.href || '#'}
+                    aria-label={`G DRIVE on ${s.name}`}
+                    {...(s.href ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className={`flex size-11 items-center justify-center rounded-lg text-white transition-transform hover:-translate-y-0.5 ${
+                      s.name === 'YouTube' ? 'bg-muted-red' : 'bg-blue'
+                    }`}
+                  >
+                    <SocialIcon weight="fill" aria-hidden className="size-6" />
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
         </div>
+      </div>
+
+      <div className="frame flex flex-col gap-3 px-4 py-6 text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-10">
+        <span>&copy; {year} G DRIVE. All rights reserved.</span>
+        <span className="flex gap-4">
+          <Link href="/privacy-policy/" className="hover:text-text-light">
+            Privacy Policy
+          </Link>
+          <span aria-hidden>|</span>
+          <Link href="/terms/" className="hover:text-text-light">
+            Terms &amp; Conditions
+          </Link>
+        </span>
       </div>
     </footer>
   )

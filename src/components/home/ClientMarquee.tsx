@@ -6,18 +6,18 @@ const logos = clientLogos
 
 export function ClientMarquee() {
   return (
-    <section aria-label="Clients" className="border-b border-rule">
-      <div className="frame grid grid-cols-1 md:grid-cols-12">
-        <h2 className="flex items-center border-b border-rule px-4 py-5 font-mono text-xs uppercase tracking-[0.12em] text-ink-soft sm:px-6 md:col-span-2 md:border-b-0 md:border-r lg:px-10">
+    <section aria-label="Clients" className="bg-card">
+      <div className="frame grid grid-cols-1 items-center gap-4 py-8 md:grid-cols-12">
+        <h2 className="eyebrow px-4 sm:px-6 md:col-span-2 lg:px-10">
           Trusted by
         </h2>
         <div className="marquee relative overflow-hidden md:col-span-10">
-          <ul className="marquee-track flex w-max items-center">
+          <ul className="marquee-track flex w-max items-center gap-4 py-2">
             {[...logos, ...logos].map((logo, i) => (
               <li
                 key={`${logo.file}-${i}`}
                 aria-hidden={i >= logos.length}
-                className="flex h-24 w-44 shrink-0 items-center justify-center border-r border-rule bg-cream px-6"
+                className="flex h-24 w-44 shrink-0 items-center justify-center rounded-xl bg-cream px-6"
               >
                 <Image
                   src={`/images/clients/${logo.file}`}

@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { Blocks } from '@/components/blocks/Blocks'
 import { ClosingCta } from '@/components/home/ClosingCta'
 import { RevealText } from '@/components/motion/RevealText'
-import { SectionIndicator } from '@/components/motion/SectionIndicator'
 import { PageHeader } from '@/components/site/PageHeader'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { clientLogos } from '@/lib/clients'
@@ -24,7 +23,6 @@ export const metadata = pageMetadata({
 export default function ClientsPage() {
   return (
     <>
-      <SectionIndicator />
       <PageHeader
         title="Mobility solutions for diverse business requirements"
         crumbs={[{ label: 'Clients', href: '/clients/' }]}
@@ -39,20 +37,20 @@ export default function ClientsPage() {
         <ButtonLink href={quoteHref()}>Speak to our business team</ButtonLink>
       </PageHeader>
 
-      <section data-section="Client portfolio" aria-labelledby="portfolio-title" className="border-b border-rule">
-        <div className="frame">
-          <div className="border-b border-rule px-4 pb-10 pt-16 sm:px-6 md:pt-20 lg:px-10">
+      <section data-section="Client portfolio" aria-labelledby="portfolio-title" className="bg-paper-2">
+        <div className="frame px-4 py-16 sm:px-6 md:py-20 lg:px-10">
+          <div className="mb-10">
             <RevealText id="portfolio-title" text="Our client portfolio" className="display text-3xl font-extrabold md:text-5xl" />
           </div>
-          <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+          <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:grid-cols-4">
             {clientLogos.map((logo) => (
-              <li key={logo.file} className="group flex h-36 items-center justify-center border-b border-r border-rule bg-cream p-8 md:h-44">
+              <li key={logo.file} className="card group flex h-32 items-center justify-center p-6 md:h-40">
                 <Image
                   src={`/images/clients/${logo.file}`}
                   alt={logo.name}
                   width={180}
                   height={90}
-                  className="max-h-16 w-auto object-contain mix-blend-multiply grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                  className="max-h-16 w-auto object-contain grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
                 />
               </li>
             ))}

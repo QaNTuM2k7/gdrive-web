@@ -29,10 +29,10 @@ export default async function BlogPage() {
         intro={<p>Practical articles on employee transportation, corporate travel, fleet technology and safety.</p>}
       />
 
-      <section data-section="Articles" aria-label="Articles" className="border-b border-rule">
-        <div className="frame">
+      <section data-section="Articles" aria-label="Articles" className="bg-paper-2">
+        <div className="frame px-4 py-16 sm:px-6 md:py-20 lg:px-10">
           {posts.length === 0 ? (
-            <div className="flex flex-col items-start gap-5 px-4 py-20 sm:px-6 md:py-28 lg:px-10">
+            <div className="card flex flex-col items-start gap-5 p-8 md:p-12">
               <NewspaperIcon weight="light" aria-hidden className="size-14 text-link" />
               <h2 className="display text-3xl font-extrabold md:text-4xl">The first articles are on their way</h2>
               <p className="max-w-[52ch] text-lg text-ink-soft">
@@ -41,13 +41,13 @@ export default async function BlogPage() {
               </p>
             </div>
           ) : (
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {posts.map((post) => {
                 const cover = post.cover as Media | null
                 return (
-                  <li key={post.id} className="border-b border-rule md:border-r md:[&:nth-child(2n)]:border-r-0 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0">
+                  <li key={post.id} className="card overflow-hidden">
                     <Link href={`/blog/${post.slug}/`} className="group flex h-full flex-col">
-                      <div className="relative aspect-[16/10] overflow-hidden border-b border-rule bg-paper-2">
+                      <div className="relative aspect-[16/10] overflow-hidden bg-paper-2">
                         {mediaSrc(cover?.url) && cover && (
                           <Image
                             src={mediaSrc(cover.sizes?.card?.url || cover.url)!}

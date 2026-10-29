@@ -13,20 +13,20 @@ export function Faq({ items, title = 'Questions we often hear' }: { items: FaqIt
   const base = useId()
 
   return (
-    <section data-section="FAQ" aria-labelledby={`${base}-title`} className="border-b border-rule">
-      <div className="frame grid grid-cols-1 lg:grid-cols-12">
-        <div className="border-b border-rule px-4 pb-10 pt-16 sm:px-6 md:pt-24 lg:col-span-4 lg:border-b-0 lg:border-r lg:px-10">
-          <div className="lg:sticky lg:top-24">
-            <RevealText id={`${base}-title`} text={title} className="display text-4xl font-extrabold md:text-5xl" />
+    <section data-section="FAQ" aria-labelledby={`${base}-title`} className="bg-paper-2">
+      <div className="frame grid grid-cols-1 gap-10 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-12 lg:px-10">
+        <div className="lg:col-span-4">
+          <div className="lg:sticky lg:top-28">
+            <RevealText id={`${base}-title`} text={title} className="display text-3xl font-extrabold md:text-4xl" />
           </div>
         </div>
-        <ul className="lg:col-span-8">
+        <ul className="flex flex-col gap-4 lg:col-span-8">
           {items.map((item, i) => {
             const isOpen = open === i
             const btn = `${base}-q${i}`
             const panel = `${base}-a${i}`
             return (
-              <li key={item.q} className="border-b border-rule last:border-b-0">
+              <li key={item.q} className="card overflow-hidden">
                 <h3>
                   <button
                     id={btn}
@@ -34,12 +34,12 @@ export function Faq({ items, title = 'Questions we often hear' }: { items: FaqIt
                     aria-expanded={isOpen}
                     aria-controls={panel}
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="group flex w-full items-center justify-between gap-6 px-4 py-6 text-left transition-colors hover:bg-paper-2 sm:px-6 md:py-7 lg:px-10"
+                    className="group flex w-full items-center justify-between gap-6 px-6 py-5 text-left md:px-8 md:py-6"
                   >
-                    <span className="display text-xl font-bold md:text-2xl">{item.q}</span>
+                    <span className="display text-lg font-bold group-hover:text-link md:text-xl">{item.q}</span>
                     <span
-                      className={`flex size-10 shrink-0 items-center justify-center border transition-[background-color,color,border-color] duration-500 ${
-                        isOpen ? 'border-gold bg-gold text-navy' : 'border-rule-strong text-ink'
+                      className={`flex size-10 shrink-0 items-center justify-center rounded-full transition-[background-color,color] duration-500 ${
+                        isOpen ? 'bg-gold text-navy' : 'bg-blue text-on-blue'
                       }`}
                     >
                       <PlusIcon
@@ -58,7 +58,7 @@ export function Faq({ items, title = 'Questions we often hear' }: { items: FaqIt
                   }`}
                 >
                   <div className="overflow-hidden" inert={!isOpen}>
-                    <p className="max-w-[62ch] px-4 pb-8 text-lg leading-relaxed text-ink-soft sm:px-6 lg:px-10">
+                    <p className="max-w-[62ch] px-6 pb-6 leading-relaxed text-ink-soft md:px-8 md:pb-8 md:text-lg">
                       {item.a}
                     </p>
                   </div>

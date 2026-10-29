@@ -48,7 +48,7 @@ export function SiteMenu({ tree, phone, telHref }: { tree: NavGroup[]; phone: st
         aria-expanded={open}
         aria-controls="site-menu"
         onClick={() => setOpen((v) => !v)}
-        className="group flex h-16 items-center gap-3 border-l border-rule-on-blue px-5 font-mono text-[13px] uppercase tracking-[0.08em] transition-colors hover:bg-blue-deep"
+        className="group flex h-16 items-center gap-3 bg-blue px-5 font-mono text-[13px] uppercase tracking-[0.08em] text-on-blue transition-colors hover:bg-blue-deep"
       >
         <span className="hidden sm:inline">{open ? 'Close' : 'Menu'}</span>
         <span aria-hidden className="relative block h-3 w-6">

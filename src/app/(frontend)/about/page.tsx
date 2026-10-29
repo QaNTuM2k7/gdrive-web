@@ -3,7 +3,6 @@ import { SealCheckIcon } from '@phosphor-icons/react/dist/ssr'
 import { Blocks } from '@/components/blocks/Blocks'
 import { ClosingCta } from '@/components/home/ClosingCta'
 import { RevealText } from '@/components/motion/RevealText'
-import { SectionIndicator } from '@/components/motion/SectionIndicator'
 import { PageHeader } from '@/components/site/PageHeader'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { pageMetadata } from '@/lib/seo'
@@ -24,7 +23,6 @@ export const metadata = pageMetadata({
 export default function AboutPage() {
   return (
     <>
-      <SectionIndicator />
       <PageHeader
         title="Moving people. Connecting possibilities."
         crumbs={[{ label: 'About', href: '/about/' }]}
@@ -40,8 +38,8 @@ export default function AboutPage() {
         <ButtonLink href={quoteHref()}>Partner with G DRIVE</ButtonLink>
       </PageHeader>
 
-      <section data-section="Vision" className="border-b border-rule">
-        <div className="frame grid grid-cols-1 md:grid-cols-2">
+      <section data-section="Vision" className="bg-paper-2">
+        <div className="frame grid grid-cols-1 gap-6 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-20 lg:px-10">
           {[
             {
               title: 'Our vision',
@@ -51,12 +49,9 @@ export default function AboutPage() {
               title: 'Our mission',
               body: 'To deliver flexible, technology-enabled transportation solutions that help organizations coordinate mobility requirements, improve operational visibility and support passenger safety.',
             },
-          ].map((v, i) => (
-            <div
-              key={v.title}
-              className={`flex flex-col gap-6 border-b border-rule px-4 py-14 sm:px-6 md:py-20 lg:px-10 ${i === 0 ? 'md:border-r' : ''}`}
-            >
-              <span className="font-mono text-sm uppercase tracking-[0.12em] text-link">{v.title}</span>
+          ].map((v) => (
+            <div key={v.title} className="card flex flex-col gap-6 p-6 md:p-10">
+              <span className="eyebrow">{v.title}</span>
               <p className="display max-w-[24ch] text-2xl font-bold leading-snug md:text-[2rem]">{v.body}</p>
             </div>
           ))}
@@ -99,17 +94,17 @@ export default function AboutPage() {
         ]}
       />
 
-      <section data-section="Parent company" aria-labelledby="parent-title" className="border-b border-rule">
-        <div className="frame grid grid-cols-1 lg:grid-cols-12">
-          <div className="px-4 py-14 sm:px-6 md:py-20 lg:col-span-5 lg:border-r lg:border-rule lg:px-10">
+      <section data-section="Parent company" aria-labelledby="parent-title" className="bg-paper">
+        <div className="frame grid grid-cols-1 gap-6 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-12 lg:px-10">
+          <div className="lg:col-span-5">
             <RevealText id="parent-title" text="Our parent organization" className="display text-3xl font-extrabold md:text-4xl" />
           </div>
-          <div className="flex flex-col justify-center gap-6 px-4 pb-14 sm:px-6 lg:col-span-7 lg:px-10 lg:py-20">
+          <div className="flex flex-col justify-center gap-6 lg:col-span-7">
             <p className="max-w-[58ch] text-lg leading-relaxed text-ink-soft">
               G DRIVE operates as the mobility brand of {site.legalName}, headquartered in {site.address.locality},{' '}
               {site.address.region}.
             </p>
-            <div className="flex items-center gap-4 border-y border-rule py-5">
+            <div className="card flex items-center gap-4 p-5">
               <SealCheckIcon weight="duotone" aria-hidden className="size-10 text-link" />
               <div>
                 <p className="font-semibold">{site.certification} certified</p>

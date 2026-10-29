@@ -25,6 +25,7 @@ export function RevealText({
   className = '',
   delay = 0,
   onMount = false,
+  highlight,
 }: {
   text: string
   as?: keyof typeof tags
@@ -32,6 +33,8 @@ export function RevealText({
   className?: string
   delay?: number
   onMount?: boolean
+  /** A word to colour with the accent, e.g. "Solutions" in "Our Mobility Solutions". */
+  highlight?: string
 }) {
   const Tag = tags[as]
 
@@ -48,7 +51,10 @@ export function RevealText({
       {/* Keep the brand name on one line: the non-breaking space stops "G" and "DRIVE" splitting. */}
       {text.replace(/G DRIVE/g, `G${NBSP}DRIVE`).split(' ').map((w, i) => (
         <span key={i} aria-hidden className="inline-flex overflow-hidden pb-[0.08em] align-bottom">
-          <motion.span variants={word} className="inline-block">
+          <motion.span
+            variants={word}
+            className={`inline-block ${highlight && w === highlight ? 'text-[var(--eyebrow-color,var(--muted-red))]' : ''}`}
+          >
             {w}
           </motion.span>
           {NBSP}

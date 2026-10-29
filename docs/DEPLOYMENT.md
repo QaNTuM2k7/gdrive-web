@@ -23,8 +23,9 @@ All variables are documented in [`.env.example`](../.env.example). In short:
 | `DATABASE_URL` | Yes | Postgres connection string |
 | `PAYLOAD_SECRET` | Yes | At least 32 random characters. The server refuses to start without it. |
 | `NEXT_PUBLIC_SITE_URL` | Yes, at build | Live URL without a trailing slash, e.g. `https://www.gdrive.example` |
-| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Yes, at build | Turnstile site key for the domain |
-| `TURNSTILE_SECRET_KEY` | Yes | Turnstile secret. Forms reject submissions if it is missing. |
+| `NEXT_PUBLIC_TURNSTILE_ENABLED` | No, at build | `true` turns Cloudflare Turnstile on. Off by default for now. |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | When enabled, at build | Turnstile site key for the domain |
+| `TURNSTILE_SECRET_KEY` | When enabled | Turnstile secret. With Turnstile on, forms reject submissions if it is missing. |
 | `NEXT_PUBLIC_ALLOW_INDEXING` | At build | `true` on production only; staging stays `false` |
 | `NEXT_PUBLIC_LEGAL_APPROVED` | At build | `true` after legal sign-off; removes the draft notice on legal pages |
 | `LEADS_NOTIFY_TO`, `SMTP_*`, `EMAIL_FROM_*` | No | Lead notification emails |

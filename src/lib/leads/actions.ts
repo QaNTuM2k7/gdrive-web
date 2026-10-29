@@ -4,6 +4,7 @@ import config from '@payload-config'
 import { headers } from 'next/headers'
 import { getPayload } from 'payload'
 
+import { turnstileEnabled } from './flags'
 import { allowSubmission } from './rateLimit'
 import { CONSENT_TEXT, type LeadFormValues, type LeadResult, leadSubmissionSchema } from './schema'
 import { verifyTurnstile } from './turnstile'
@@ -33,7 +34,7 @@ export async function submitLead(input: unknown): Promise<LeadResult> {
     }
   }
 
-  if (!(await verifyTurnstile(data.turnstileToken, ip === 'unknown' ? undefined : ip))) {
+  if (turnstileEnabled && !(await verifyTurnstile(data.turnstileToken, ip === 'unknown' ? undefined : ip))) {
     return { ok: false, error: 'The security check did not pass. Refresh the page and try again.' }
   }
 

@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { submitLead } from '@/lib/leads/actions'
+import { turnstileEnabled } from '@/lib/leads/flags'
 import { type FormType, isServiceValue, type ServiceValue, serviceOptions } from '@/lib/leads/options'
 import { CONSENT_TEXT, type LeadFormValues, leadFormSchema } from '@/lib/leads/schema'
 import { controlClass, describedBy, Field } from './Field'
@@ -75,7 +76,7 @@ export function LeadForm({
 
   const send = async (values: LeadFormValues, event?: React.BaseSyntheticEvent) => {
     setFormError(null)
-    if (!token) {
+    if (turnstileEnabled && !token) {
       setFormError('Complete the security check below, then send the form again.')
       return
     }
@@ -117,7 +118,7 @@ export function LeadForm({
   return (
     <form onSubmit={(e) => handleSubmit(send)(e)} noValidate className="flex flex-col gap-8">
       {formError && (
-        <div role="alert" className="flex items-start gap-3 border border-danger/60 bg-danger/10 p-4 text-sm">
+        <div role="alert" className="flex items-start gap-3 rounded-lg border border-danger/60 bg-danger/10 p-4 text-sm">
           <WarningCircleIcon aria-hidden className="mt-0.5 size-5 shrink-0 text-danger" />
           <p>{formError}</p>
         </div>
@@ -227,19 +228,21 @@ export function LeadForm({
         )}
       </div>
 
-      <div className="flex flex-col gap-6 border-t border-rule pt-8 sm:flex-row sm:items-center sm:justify-between">
-        <Turnstile
-          ref={turnstileRef}
-          siteKey={siteKey}
-          onSuccess={setToken}
-          onExpire={() => setToken('')}
-          onError={() => setToken('')}
-          options={{ theme: 'auto', action: formType }}
-        />
+      <div className="flex flex-col gap-6 pt-2 sm:flex-row sm:items-center sm:justify-between">
+        {turnstileEnabled && (
+          <Turnstile
+            ref={turnstileRef}
+            siteKey={siteKey}
+            onSuccess={setToken}
+            onExpire={() => setToken('')}
+            onError={() => setToken('')}
+            options={{ theme: 'auto', action: formType }}
+          />
+        )}
         <button
           type="submit"
           disabled={isSubmitting}
-          className="group inline-flex h-14 items-center justify-center gap-3 whitespace-nowrap bg-gold px-8 font-mono text-sm font-medium uppercase tracking-[0.08em] text-navy transition-[background-color,transform] hover:bg-gold-dark active:translate-y-px disabled:cursor-wait disabled:opacity-80"
+          className="group inline-flex h-14 items-center justify-center gap-3 whitespace-nowrap rounded-lg bg-gold sm:ml-auto px-8 font-mono text-sm font-medium uppercase tracking-[0.08em] text-navy transition-[background-color,transform] hover:bg-gold-dark active:translate-y-px disabled:cursor-wait disabled:opacity-80"
         >
           {isSubmitting ? (
             <>

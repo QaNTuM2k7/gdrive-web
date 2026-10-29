@@ -81,6 +81,7 @@
   --color-navy: var(--navy);
   --color-gold: var(--gold);
   --color-gold-dark: var(--gold-dark);
+  --color-text-light: var(--text-light);
   --color-text-muted: var(--text-muted);
   --color-text-dark: var(--text-dark);
   --color-deep-blue: var(--deep-blue);

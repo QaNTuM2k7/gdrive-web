@@ -37,7 +37,8 @@ export type LeadFormValues = z.input<typeof leadFormSchema>
 // Extra fields the browser adds that the visitor does not type.
 export const leadMetaSchema = z.object({
   formType: z.enum(formTypes),
-  turnstileToken: z.string().min(1, 'Complete the security check.'),
+  // Empty while Turnstile is switched off (see flags.ts); the server action enforces it when on.
+  turnstileToken: z.string().max(4096).default(''),
   sourcePage: z.string().max(300).optional(),
   utmSource: z.string().max(100).optional(),
   utmMedium: z.string().max(100).optional(),

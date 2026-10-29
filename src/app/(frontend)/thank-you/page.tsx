@@ -24,16 +24,16 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
   const what = type === 'contact' ? 'enquiry' : 'quote request'
 
   return (
-    <section className="on-blue border-b border-rule-on-blue">
+    <section className="on-blue">
       <div className="frame grid grid-cols-1 lg:grid-cols-12">
-        <div className="flex flex-col gap-8 px-4 py-16 sm:px-6 md:py-24 lg:col-span-7 lg:border-r lg:border-rule-on-blue lg:px-10">
-          <h1 className="display rise max-w-[16ch] text-[clamp(2.4rem,5vw,4.5rem)] font-extrabold leading-[0.98]">
+        <div className="flex flex-col gap-8 px-4 py-16 sm:px-6 md:py-24 lg:col-span-7 lg:px-10">
+          <h1 className="rise max-w-[16ch] font-serif text-[clamp(2.4rem,5vw,4.5rem)] leading-[1.02]">
             Thank you. Your {what} has reached our team.
           </h1>
           <ol className="flex flex-col gap-4">
             {nextSteps.map((step, i) => (
               <li key={step} className="flex items-start gap-4 text-lg text-on-blue-soft">
-                <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center border border-rule-on-blue font-mono text-sm text-gold">
+                <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full bg-gold font-mono text-sm text-navy">
                   {i + 1}
                 </span>
                 {step}
@@ -52,7 +52,7 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
           </div>
         </div>
         <div className="hidden items-center justify-center p-10 lg:col-span-5 lg:flex">
-          <Image src={pin} alt="" sizes="280px" className="h-auto w-[240px] opacity-90" />
+          <Image src={pin} alt="" priority sizes="280px" className="h-auto w-[240px] opacity-90" />
         </div>
       </div>
     </section>

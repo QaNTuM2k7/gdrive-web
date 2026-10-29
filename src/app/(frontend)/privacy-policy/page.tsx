@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { LegalPage } from '@/components/templates/LegalPage'
+import { turnstileEnabled } from '@/lib/leads/flags'
 import { pageMetadata } from '@/lib/seo'
 import { site } from '@/lib/site'
 
@@ -28,10 +29,12 @@ export default function PrivacyPolicyPage() {
         <li>The page you came from and campaign tags in the link (for example utm_source), if present</li>
         <li>A record that you agreed to be contacted, and the wording you agreed to</li>
       </ul>
-      <p>
-        We use Cloudflare Turnstile to protect the forms from automated abuse. Turnstile processes technical information
-        about your browser and connection to tell people and bots apart.
-      </p>
+      {turnstileEnabled && (
+        <p>
+          We use Cloudflare Turnstile to protect the forms from automated abuse. Turnstile processes technical
+          information about your browser and connection to tell people and bots apart.
+        </p>
+      )}
 
       <h2>Why we use it</h2>
       <ul>

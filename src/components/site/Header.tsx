@@ -7,9 +7,10 @@ import { Logo } from './Logo'
 import { SiteMenu } from './SiteMenu'
 
 // White header with the colour logo, a gold quote block and a blue menu block, as in the approved design.
+// No backdrop-filter on it: that would make the header the containing block for the fixed menu panel.
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-white/95 shadow-[0_1px_0_rgb(11_18_40/0.06),0_6px_20px_-12px_rgb(11_18_40/0.25)] backdrop-blur supports-[backdrop-filter]:bg-white/85">
+    <header className="sticky top-0 z-50 bg-white shadow-[0_1px_0_rgb(11_18_40/0.06),0_6px_20px_-12px_rgb(11_18_40/0.25)]">
       <div className="frame flex h-16 items-stretch">
         <div className="flex items-center px-4 sm:px-6">
           <Logo variant="color" priority />

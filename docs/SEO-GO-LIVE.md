@@ -10,7 +10,7 @@ and pre-rendered pages.
 - [ ] `NEXT_PUBLIC_SITE_URL` is the final production domain (canonicals and sitemap use it)
 - [ ] `NEXT_PUBLIC_ALLOW_INDEXING=true` on production only, and the image was rebuilt
 - [ ] Staging still returns `Disallow: /` in `robots.txt` and `noindex` meta tags
-- [ ] Real Turnstile keys for the production domain
+- [ ] Decide on Turnstile: if wanted, real keys for the production domain and `NEXT_PUBLIC_TURNSTILE_ENABLED=true`
 - [ ] Client logos on `/clients/` and the home page have written permission (see CONTENT-REVIEW.md)
 - [ ] Legal pages approved and `NEXT_PUBLIC_LEGAL_APPROVED=true`
 

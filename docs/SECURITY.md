@@ -3,8 +3,9 @@
 ## Lead forms
 
 - **Validation** with one zod schema in the browser and again in the server action; lengths are capped.
-- **Spam protection**: Cloudflare Turnstile (verified server-side, fails closed if the secret is missing),
-  a hidden honeypot field, and a rate limit of 5 submissions per 10 minutes per IP.
+- **Spam protection**: a hidden honeypot field and a rate limit of 5 submissions per 10 minutes per IP.
+  Cloudflare Turnstile is built in but switched off for now (`NEXT_PUBLIC_TURNSTILE_ENABLED`); when on it
+  is verified server-side and fails closed if the secret is missing.
 - Leads are written only by the server action. The public REST API cannot create, read or list leads.
 - Notification emails HTML-escape every value.
 - Consent wording is stored with each lead (DPDP Act 2023).
@@ -25,7 +26,7 @@
 
 Set for every response in `next.config.ts`:
 
-- `Content-Security-Policy`: self only, plus Cloudflare Turnstile. `'unsafe-inline'` is required for
+- `Content-Security-Policy`: self only, plus Cloudflare Turnstile while it is enabled. `'unsafe-inline'` is required for
   Next.js inline scripts without per-request nonces (which would disable static pages).
 - `Strict-Transport-Security` (production), `X-Frame-Options: DENY`, `frame-ancestors 'none'`,
   `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Permissions-Policy`, `Cross-Origin-Opener-Policy`.

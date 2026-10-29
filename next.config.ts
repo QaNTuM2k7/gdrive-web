@@ -7,20 +7,22 @@ const __filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(__filename)
 
 const isProd = process.env.NODE_ENV === 'production'
+// Mirrors src/lib/leads/flags.ts: Cloudflare is only allowed in the CSP while Turnstile is on.
+const turnstile = process.env.NEXT_PUBLIC_TURNSTILE_ENABLED === 'true' ? ' https://challenges.cloudflare.com' : ''
 
 // Extra origins for media storage (for example an S3 or R2 public URL) are allowed in img-src.
 const mediaOrigin = process.env.S3_PUBLIC_URL ? new URL(process.env.S3_PUBLIC_URL).origin : ''
 
 // Content Security Policy. Next.js inlines small scripts and styles, so 'unsafe-inline' is needed without
-// nonces (nonces would force every page to render dynamically). Cloudflare Turnstile is the only third party.
+// nonces (nonces would force every page to render dynamically). Cloudflare Turnstile, when on, is the only third party.
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com${isProd ? '' : " 'unsafe-eval'"}`,
+  `script-src 'self' 'unsafe-inline'${turnstile}${isProd ? '' : " 'unsafe-eval'"}`,
   "style-src 'self' 'unsafe-inline'",
   `img-src 'self' data: blob:${mediaOrigin ? ` ${mediaOrigin}` : ''}`,
   "font-src 'self' data:",
-  `connect-src 'self' https://challenges.cloudflare.com${isProd ? '' : ' ws: wss:'}`,
-  'frame-src https://challenges.cloudflare.com',
+  `connect-src 'self'${turnstile}${isProd ? '' : ' ws: wss:'}`,
+  `frame-src ${turnstile ? turnstile.trim() : "'none'"}`,
   "worker-src 'self' blob:",
   "object-src 'none'",
   "base-uri 'self'",

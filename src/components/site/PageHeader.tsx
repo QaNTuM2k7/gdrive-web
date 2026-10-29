@@ -105,6 +105,7 @@ export function PageHeader({
               <Image
                 src={pin}
                 alt=""
+                priority
                 sizes="240px"
                 className="rise h-auto w-[clamp(150px,16vw,240px)] opacity-95 drop-shadow-[0_20px_40px_rgb(11_18_40/0.25)]"
                 style={{ '--delay': '250ms' } as React.CSSProperties}

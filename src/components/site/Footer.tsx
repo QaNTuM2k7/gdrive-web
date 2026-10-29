@@ -81,18 +81,25 @@ export function Footer() {
           <ul className="flex gap-3">
             {site.social.map((s) => {
               const SocialIcon = socialIcons[s.name as keyof typeof socialIcons]
+              const tile = `flex size-11 items-center justify-center rounded-lg text-white ${s.name === 'YouTube' ? 'bg-muted-red' : 'bg-blue'}`
               return (
                 <li key={s.name}>
-                  <a
-                    href={s.href || '#'}
-                    aria-label={`G DRIVE on ${s.name}`}
-                    {...(s.href ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    className={`flex size-11 items-center justify-center rounded-lg text-white transition-transform hover:-translate-y-0.5 ${
-                      s.name === 'YouTube' ? 'bg-muted-red' : 'bg-blue'
-                    }`}
-                  >
-                    <SocialIcon weight="fill" aria-hidden className="size-6" />
-                  </a>
+                  {/* Until the client supplies a profile URL the icon is shown but is not a link. */}
+                  {s.href ? (
+                    <a
+                      href={s.href}
+                      aria-label={`G DRIVE on ${s.name}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${tile} transition-transform hover:-translate-y-0.5`}
+                    >
+                      <SocialIcon weight="fill" aria-hidden className="size-6" />
+                    </a>
+                  ) : (
+                    <span role="img" aria-label={`${s.name} (coming soon)`} title={`${s.name} coming soon`} className={`${tile} opacity-70`}>
+                      <SocialIcon weight="fill" aria-hidden className="size-6" />
+                    </span>
+                  )}
                 </li>
               )
             })}

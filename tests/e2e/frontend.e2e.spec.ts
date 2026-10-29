@@ -64,6 +64,29 @@ test('unknown pages return 404', async ({ page }) => {
   expect(res?.status()).toBe(404)
 })
 
+// URLs outside every section used to fall through to Next's unbranded default 404.
+test('unknown top-level pages get the branded 404', async ({ page }) => {
+  const res = await page.goto('/no-such-page/')
+  expect(res?.status()).toBe(404)
+  await expect(page).toHaveTitle(/Page not found/)
+  await expect(page.getByRole('heading', { level: 1 })).toContainText("This route doesn't exist")
+})
+
+// A backdrop-filter on the header once shrank the fixed menu panel so page content covered its links.
+test('menu links are clickable over the page', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: /menu/i }).click()
+  await page.getByRole('dialog').getByRole('link', { name: 'Blog' }).click()
+  await expect(page).toHaveURL(/\/blog\/$/)
+  await expect(page.getByRole('dialog')).toBeHidden()
+})
+
+// Turnstile is switched off for now (src/lib/leads/flags.ts).
+test('contact form shows no Cloudflare widget', async ({ page }) => {
+  await page.goto('/contact/')
+  await expect(page.locator('iframe[src*="challenges.cloudflare.com"]')).toHaveCount(0)
+})
+
 test.describe('phone width', () => {
   test.use({ viewport: { width: 375, height: 812 } })
   for (const path of pages) {

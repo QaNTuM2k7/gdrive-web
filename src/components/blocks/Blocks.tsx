@@ -3,8 +3,8 @@ import Image from 'next/image'
 
 import { icons } from '@/components/icons'
 import { RevealText } from '@/components/motion/RevealText'
-import { RouteDiagram } from '@/components/motion/RouteDiagram'
-import type { Block, Img } from '@/content/types'
+import type { Block } from '@/content/types'
+import { Picture } from './Picture'
 
 // Content blocks for inner pages, in the card-based style of the approved homepage design.
 
@@ -15,23 +15,6 @@ function SectionHead({ title, intro }: { title: string; intro?: string }) {
     <div className="mb-10 flex flex-col gap-4">
       <RevealText text={title} className="display max-w-[22ch] text-3xl font-extrabold leading-tight md:text-4xl" />
       {intro && <p className="max-w-[62ch] text-lg leading-relaxed text-ink-soft">{intro}</p>}
-    </div>
-  )
-}
-
-function Picture({ image, sizes, className = '' }: { image: Img; sizes: string; className?: string }) {
-  const contain = image.fit === 'contain'
-  return (
-    <div className={`relative overflow-hidden rounded-2xl shadow-card ${contain ? 'bg-white' : ''} ${className}`}>
-      <Image
-        src={image.src}
-        alt={image.alt}
-        fill
-        placeholder={image.src.blurDataURL ? 'blur' : 'empty'}
-        sizes={sizes}
-        style={image.focus ? { objectPosition: image.focus } : undefined}
-        className={contain ? 'object-contain p-6' : 'object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.03]'}
-      />
     </div>
   )
 }
@@ -72,7 +55,7 @@ function Split({ block, tone }: { block: Extract<Block, { type: 'split' }>; tone
         <Picture
           image={block.image}
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className={`aspect-[16/10] lg:col-span-6 ${block.reverse ? 'lg:order-last' : ''}`}
+          className={`lg:col-span-6 ${block.reverse ? 'lg:order-last' : ''}`}
         />
         <div className="flex flex-col gap-6 lg:col-span-6">
           <RevealText text={block.title} className="display max-w-[20ch] text-3xl font-extrabold leading-tight md:text-4xl" />
@@ -140,7 +123,7 @@ function Checklist({ block, tone }: { block: Extract<Block, { type: 'checklist' 
           </ul>
         </div>
         {block.image && (
-          <Picture image={block.image} sizes="(min-width: 1024px) 40vw, 100vw" className="aspect-[4/3] lg:col-span-5" />
+          <Picture image={block.image} sizes="(min-width: 1024px) 40vw, 100vw" className="lg:col-span-5" />
         )}
       </div>
     </section>
@@ -202,17 +185,36 @@ function Compare({ block, tone }: { block: Extract<Block, { type: 'compare' }>; 
   )
 }
 
-function Diagram({ block, tone }: { block: Extract<Block, { type: 'diagram' }>; tone: string }) {
+// Information cards with no link: image, heading and description. Five cards sit in rows of two and three.
+function Cards({ block, tone }: { block: Extract<Block, { type: 'cards' }>; tone: string }) {
   return (
     <section className={tone}>
-      <div className={`${wrap} grid grid-cols-1 items-center gap-10 lg:grid-cols-12`}>
-        <div className="flex flex-col gap-6 lg:col-span-5">
-          <RevealText text={block.title} className="display max-w-[18ch] text-3xl font-extrabold leading-tight md:text-4xl" />
-          <p className="max-w-[52ch] text-lg leading-relaxed text-ink-soft">{block.body}</p>
-        </div>
-        <div className="on-deep relative aspect-[8/5] overflow-hidden rounded-2xl text-cream shadow-card lg:col-span-7">
-          <RouteDiagram name={block.diagram} className="absolute inset-0 p-4 md:p-8" />
-        </div>
+      <div className={wrap}>
+        <SectionHead title={block.title} intro={block.intro} />
+        <ul className="grid grid-cols-1 gap-6 md:grid-cols-6">
+          {block.items.map((c, i) => {
+            const contain = c.image.fit === 'contain'
+            return (
+              <li key={c.title} className={`card reveal flex flex-col overflow-hidden ${i < 2 ? 'md:col-span-3' : 'md:col-span-2'}`}>
+                <div className={`relative aspect-[16/9] ${contain ? 'bg-white' : ''}`}>
+                  <Image
+                    src={c.image.src}
+                    alt={c.image.alt}
+                    fill
+                    placeholder={c.image.src.blurDataURL ? 'blur' : 'empty'}
+                    sizes="(min-width: 768px) 45vw, 100vw"
+                    style={c.image.focus ? { objectPosition: c.image.focus } : undefined}
+                    className={contain ? 'object-contain p-5' : 'object-cover'}
+                  />
+                </div>
+                <div className="flex flex-col gap-3 p-6 md:p-7">
+                  <h3 className="display text-xl font-bold">{c.title}</h3>
+                  <p className="text-ink-soft">{c.body}</p>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </section>
   )
@@ -280,8 +282,8 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
             return <Tiles key={i} block={block} tone={tone} />
           case 'compare':
             return <Compare key={i} block={block} tone={tone} />
-          case 'diagram':
-            return <Diagram key={i} block={block} tone={tone} />
+          case 'cards':
+            return <Cards key={i} block={block} tone={tone} />
           case 'cities':
             return <Cities key={i} block={block} tone={tone} />
           case 'note':

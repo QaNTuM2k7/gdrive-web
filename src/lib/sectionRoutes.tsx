@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import type { ReactNode } from 'react'
 
 import { DetailTemplate, HubTemplate } from '@/components/templates/Templates'
 import type { Section } from '@/content/types'
@@ -8,7 +9,7 @@ import { pageMetadata } from './seo'
 type SlugProps = { params: Promise<{ slug: string }> }
 
 // Builds the hub page and statically generated child pages for a content section.
-export function sectionRoutes(section: Section) {
+export function sectionRoutes(section: Section, options: { cards?: ReactNode } = {}) {
   const find = (slug: string) => section.pages.find((p) => p.slug === slug)
 
   return {
@@ -20,7 +21,7 @@ export function sectionRoutes(section: Section) {
         image: section.hero.src,
       }),
       Page: function HubPage() {
-        return <HubTemplate section={section} />
+        return <HubTemplate section={section} cards={options.cards} />
       },
     },
     detail: {

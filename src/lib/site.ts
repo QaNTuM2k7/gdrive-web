@@ -24,9 +24,9 @@ export const site = {
   certification: 'ISO 9001:2015',
   // From the approved homepage design. TODO(client): confirm the inbox exists.
   email: 'info@gdrive.in',
-  // TODO(client): add the real profile URLs; icons link to "#" until then.
+  // TODO(client): add the YouTube URL; the icon is shown without a link until then.
   social: [
-    { name: 'LinkedIn', href: '' },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/company/gdrivemobility' },
     { name: 'YouTube', href: '' },
   ],
 } as const
@@ -41,6 +41,7 @@ export const quoteHref = (service?: string) =>
 export type NavItem = { label: string; href: string }
 
 export const mainNav: NavItem[] = [
+  { label: 'Home', href: '/' },
   { label: 'Solutions', href: '/solutions/' },
   { label: 'Fleet', href: '/fleet/' },
   { label: 'Technology', href: '/technology/' },

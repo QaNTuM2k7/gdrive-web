@@ -1,5 +1,4 @@
 import breathalyzerCheck from '../../public/images/breathalyzer-check.jpg'
-import driverTraining from '../../public/images/driver-training.jpg'
 import sedanNight from '../../public/images/sedan-night.jpg'
 import adasDashboard from '../../public/images/safety/adas-dashboard.jpg'
 import aiAlertList from '../../public/images/safety/ai-alert-list.webp'
@@ -8,12 +7,13 @@ import aiMonitoringB from '../../public/images/safety/ai-driver-monitoring-b.jpg
 import breathFail from '../../public/images/safety/breathalyzer-fail.webp'
 import breathPass from '../../public/images/safety/breathalyzer-pass.webp'
 import breathBusDriver from '../../public/images/safety/breathalyzer-bus-driver.jpg'
-import faceId from '../../public/images/safety/face-id-verified.jpg'
 import iconLive from '../../public/images/technology/icon-live-location.png'
 import iconRoute from '../../public/images/technology/icon-route.png'
 import iconSpeed from '../../public/images/technology/icon-vehicle-speed.png'
 import iconTrip from '../../public/images/technology/icon-trip-status.png'
-import routeMap from '../../public/images/technology/route-map.jpg'
+import safetyBanner from '../../public/images/banners/safety.jpg'
+import gpsGeofencing from '../../public/images/safety/gps-geofencing.jpg'
+import controlRoom from '../../public/images/technology/control-room.jpg'
 import type { Block, DetailPage, Section } from './types'
 
 // Breathalyzer, AI video telematics and ADAS copy from the SEO master document (sections 13 to 16).
@@ -90,7 +90,7 @@ const geofencing: DetailPage = {
   h1: 'GPS & geofencing',
   intro:
     'Every trip is visible to the transport team: vehicle location, route movement, trip status, geofencing, route deviation, speed and SOS escalation.',
-  hero: { src: routeMap, alt: 'A tracked route on a map of Chennai', focus: '50% 40%' },
+  hero: { src: gpsGeofencing, alt: 'Live vehicle tracking, route and trip status on a G DRIVE laptop and phone' },
   blocks: [
     {
       type: 'tiles',
@@ -111,14 +111,19 @@ const geofencing: DetailPage = {
         { icon: 'sos', title: 'SOS escalation', body: 'Emergency escalation to the operations team where implemented.' },
       ],
     },
-    { type: 'diagram', title: 'Monitored from the control tower', body: 'Location, routes and alerts come together on one live map.', diagram: 'tower' },
+    {
+      type: 'split',
+      title: 'Monitored from the control tower',
+      body: ['Location, routes and alerts come together on one live map.'],
+      image: { src: controlRoom, alt: 'An operator monitoring live fleet dashboards in the G DRIVE control room' },
+    },
     noGuarantee,
   ],
   cta: 'Discuss GPS and geofencing',
   related: [
-    { href: '/technology/gps-telematics/', label: 'GPS & Telematics' },
-    { href: '/technology/control-tower/', label: 'Control Tower' },
-    { href: '/technology/passenger-app/', label: 'Passenger App' },
+    { href: '/technology/', label: 'Technology' },
+    { href: '/safety/ai-video-telematics/', label: 'AI Video Telematics' },
+    { href: '/safety/', label: 'All safety layers' },
   ],
 }
 
@@ -227,29 +232,11 @@ export const safetySection: Section = {
   h1: 'Safety engineered into every journey',
   intro:
     'At G DRIVE, safety is integrated throughout the transportation lifecycle, from driver readiness to trip completion.',
-  hero: { src: aiMonitoring, alt: 'An in-cab AI camera monitoring a G DRIVE driver', focus: '50% 40%' },
+  hero: { src: safetyBanner, alt: 'An in-cab camera monitoring a G DRIVE driver' },
   cardsCta: { title: 'Planning safety for your fleet?', body: 'Tell us about your vehicles, drivers and routes. We will recommend the right combination of safety layers.' },
   cardsTitle: 'Four layers of safety technology',
   pages: [breathalyzer, geofencing, aiVideo, adas],
   blocks: [
-    {
-      type: 'split',
-      title: 'Technology plus people',
-      body: ['Technology provides intelligence. People deliver the experience. Drivers are trained in:'],
-      points: ['Defensive driving', 'Emergency response and first aid', 'Passenger etiquette and traffic regulations', 'Night driving and monsoon preparedness'],
-      image: { src: driverTraining, alt: 'G DRIVE drivers in a training session', focus: '50% 50%' },
-      reverse: true,
-    },
-    {
-      type: 'split',
-      title: 'In development: face identification',
-      body: [
-        'G DRIVE is developing face identification integrated with the breathalyzer, and automated employee attendance capture using face identification or RFID, to support better workforce planning.',
-      ],
-      image: { src: faceId, alt: 'Face identification verifying a G DRIVE driver in the cab', focus: '50% 45%' },
-      tone: 'blue',
-    },
     noGuarantee,
   ],
-  cta: 'Discuss safety for your fleet',
 }

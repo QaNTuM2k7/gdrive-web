@@ -1,9 +1,7 @@
 import { PhoneIcon } from '@phosphor-icons/react/dist/ssr'
 import type { Metadata } from 'next'
-import Image from 'next/image'
 
 import { ButtonLink } from '@/components/ui/ButtonLink'
-import pin from '../../../../public/images/brand/pin-white.png'
 import { primaryContact, telHref } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -50,9 +48,6 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
               {primaryContact.phone}
             </a>
           </div>
-        </div>
-        <div className="hidden items-center justify-center p-10 lg:col-span-5 lg:flex">
-          <Image src={pin} alt="" priority sizes="280px" className="h-auto w-[240px] opacity-90" />
         </div>
       </div>
     </section>

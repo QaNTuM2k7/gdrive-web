@@ -61,6 +61,14 @@ const nextConfig: NextConfig = {
     ],
     ...(mediaOrigin ? { remotePatterns: [new URL(`${mediaOrigin}/**`)] } : {}),
   },
+  // Fleet categories and technology boxes no longer have their own pages. The optional slash matters because
+  // these run before src/proxy.ts adds trailing slashes.
+  async redirects() {
+    return [
+      { source: '/fleet/:slug{/}?', destination: '/fleet/', permanent: true },
+      { source: '/technology/:slug{/}?', destination: '/technology/', permanent: true },
+    ]
+  },
   async headers() {
     return [
       { source: '/:path*', headers: securityHeaders },

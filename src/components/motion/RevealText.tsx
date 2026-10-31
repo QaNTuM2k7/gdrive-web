@@ -53,7 +53,7 @@ export function RevealText({
         <span key={i} aria-hidden className="inline-flex overflow-hidden pb-[0.08em] align-bottom">
           <motion.span
             variants={word}
-            className={`inline-block ${highlight && w === highlight ? 'text-[var(--eyebrow-color,var(--muted-red))]' : ''}`}
+            className={`inline-block ${highlight && w === highlight ? 'text-[var(--eyebrow-color,var(--blue))]' : ''}`}
           >
             {w}
           </motion.span>

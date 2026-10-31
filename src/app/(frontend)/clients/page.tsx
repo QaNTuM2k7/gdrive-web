@@ -1,9 +1,10 @@
 import Image from 'next/image'
 
-import { Blocks } from '@/components/blocks/Blocks'
-import { ClosingCta } from '@/components/home/ClosingCta'
+import { Industries } from '@/components/home/Industries'
+import { WhyPartner } from '@/components/home/WhyPartner'
 import { RevealText } from '@/components/motion/RevealText'
 import { PageHeader } from '@/components/site/PageHeader'
+import { PageIntro } from '@/components/site/PageIntro'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { clientLogos } from '@/lib/clients'
 import { pageMetadata } from '@/lib/seo'
@@ -23,19 +24,20 @@ export const metadata = pageMetadata({
 export default function ClientsPage() {
   return (
     <>
+      {/* TODO(client): no clients banner or full logo image was supplied; swap them in when they arrive. */}
       <PageHeader
         title="Mobility solutions for diverse business requirements"
         crumbs={[{ label: 'Clients', href: '/clients/' }]}
-        intro={
-          <p>
-            Commute patterns, operating shifts, campus layouts, passenger volumes and travel schedules all shape how mobility
-            should be planned. G DRIVE tailors transportation to each organization.
-          </p>
-        }
-        image={{ src: itParkPickup, alt: 'A G DRIVE driver welcoming a client at an IT park', focus: '60% 50%' }}
+        image={{ src: itParkPickup, alt: 'A G DRIVE driver welcoming a client at an IT park', focus: '50% 35%' }}
+      />
+      <PageIntro
+        title="Mobility solutions for diverse business requirements"
+        paragraphs={[
+          'Commute patterns, operating shifts, campus layouts, passenger volumes and travel schedules all shape how mobility should be planned. G DRIVE tailors transportation to each organization.',
+        ]}
       >
         <ButtonLink href={quoteHref()}>Speak to our business team</ButtonLink>
-      </PageHeader>
+      </PageIntro>
 
       <section data-section="Client portfolio" aria-labelledby="portfolio-title" className="bg-paper-2">
         <div className="frame px-4 py-16 sm:px-6 md:py-20 lg:px-10">
@@ -58,24 +60,8 @@ export default function ClientsPage() {
         </div>
       </section>
 
-      <Blocks
-        blocks={[
-          {
-            type: 'features',
-            title: 'Industries we serve',
-            items: [
-              { icon: 'cpu', title: 'IT and technology', body: 'Employee transportation and shuttle planning for offices, technology campuses and business parks.' },
-              { icon: 'wrench', title: 'Manufacturing and industrial facilities', body: 'Transportation for employees working across designated shifts and facility locations.' },
-              { icon: 'building', title: 'Corporate offices', body: 'Employee pickup and drop, corporate car rental, executive travel and scheduled shuttles.' },
-              { icon: 'campus', title: 'Educational institutions', body: 'Campus mobility and institutional transportation based on passenger requirements and agreed routes.' },
-              { icon: 'grid', title: 'Business parks and large campuses', body: 'Shuttle and connecting transportation between buildings, entrances and transit points.' },
-              { icon: 'train', title: 'Public transit networks', body: 'Metro Connect feeder services for first-mile and last-mile connectivity.' },
-            ],
-          },
-        ]}
-      />
-
-      <ClosingCta title="Let's discuss your industry's mobility needs" />
+      <WhyPartner />
+      <Industries />
     </>
   )
 }

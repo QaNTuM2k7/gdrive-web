@@ -16,7 +16,7 @@ export type Block =
   | { type: 'checklist'; title: string; intro?: string; items: string[]; image?: Img }
   | { type: 'tiles'; title: string; intro?: string; items: { image: StaticImageData; label: string; body: string }[] }
   | { type: 'compare'; title: string; intro?: string; items: { image: Img; label: string; body: string }[] }
-  | { type: 'diagram'; title: string; body: string; diagram: string }
+  | { type: 'cards'; title: string; intro?: string; items: { image: Img; title: string; body: string }[] }
   | { type: 'cities'; title: string; body: string }
   | { type: 'note'; body: string }
 
@@ -47,12 +47,13 @@ export type Section = {
   intro: string
   hero: Img
   service: ServiceValue
+  /** Full-width image under the description, such as a flow diagram. */
+  figure?: Img
   /** Blocks shown on the hub page after the child cards. */
   blocks: Block[]
-  cardsTitle: string
+  cardsTitle?: string
   /** Copy for the call-to-action tile that fills any empty cell after the cards. */
   cardsCta?: { title: string; body: string }
   pages: DetailPage[]
   faqs?: Faq[]
-  cta: string
 }

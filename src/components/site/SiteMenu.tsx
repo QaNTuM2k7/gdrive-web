@@ -92,6 +92,7 @@ export function SiteMenu({ tree, phone, telHref }: { tree: NavGroup[]; phone: st
                     {g.label}
                     <ArrowUpRightIcon aria-hidden className="size-6 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </Link>
+                  {g.children.length > 0 && (
                   <ul className="flex flex-col gap-2">
                     {g.children.map((c) => (
                       <li key={c.href}>
@@ -106,6 +107,7 @@ export function SiteMenu({ tree, phone, telHref }: { tree: NavGroup[]; phone: st
                       </li>
                     ))}
                   </ul>
+                  )}
                 </motion.nav>
               ))}
               <div className="flex flex-col justify-end gap-4 p-6 md:col-span-2 md:p-8 xl:col-span-3">

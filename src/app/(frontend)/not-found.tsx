@@ -1,8 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import { ButtonLink } from '@/components/ui/ButtonLink'
-import pin from '../../../public/images/brand/pin-white.png'
 import { mainNav } from '@/lib/site'
 
 export const metadata = {
@@ -36,9 +34,6 @@ export default function NotFound() {
           <div>
             <ButtonLink href="/">Back to home</ButtonLink>
           </div>
-        </div>
-        <div className="hidden items-center justify-center p-10 lg:col-span-5 lg:flex">
-          <Image src={pin} alt="" priority sizes="280px" className="h-auto w-[240px] opacity-90" />
         </div>
       </div>
     </section>

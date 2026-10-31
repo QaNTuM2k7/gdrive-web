@@ -11,12 +11,12 @@ import type { Icon } from '@phosphor-icons/react'
 import Image, { type StaticImageData } from 'next/image'
 import Link from 'next/link'
 
-import busBoarding from '../../../public/images/fleet/bus-boarding-portrait.jpg'
-import itParkFleet from '../../../public/images/fleet/it-park-fleet.jpg'
-import fleetHighway from '../../../public/images/fleet-highway.jpg'
+import busBoarding from '../../../public/images/fleet/bus-boarding-wide.jpg'
+import fleetHighway from '../../../public/images/fleet/fleet-highway-wide.jpg'
+import employeeTransport from '../../../public/images/solutions/employee-transportation.jpg'
 import airportPickup from '../../../public/images/rental/airport-pickup.jpg'
 import executiveArrival from '../../../public/images/rental/executive-arrival.jpg'
-import controlRoom from '../../../public/images/technology/control-room.jpg'
+import fleetManagement from '../../../public/images/technology/fleet-management.jpg'
 import { SectionHeading } from './SectionHeading'
 
 // "Our Mobility Solutions" cards, copy from the SEO master document's home page section.
@@ -27,8 +27,8 @@ const cards: { title: string; body: string; cta: string; href: string; icon: Ico
     cta: 'Explore Employee Transportation',
     href: '/solutions/employee-transportation/',
     icon: UsersThreeIcon,
-    image: itParkFleet,
-    focus: '50% 60%',
+    image: employeeTransport,
+    focus: '50% 50%',
   },
   {
     title: 'Corporate Car Rental',
@@ -55,7 +55,7 @@ const cards: { title: string; body: string; cta: string; href: string; icon: Ico
     href: '/solutions/shuttle-services/',
     icon: BusIcon,
     image: busBoarding,
-    focus: '50% 78%',
+    focus: '50% 40%',
   },
   {
     title: 'Metro Connect Services',
@@ -64,7 +64,7 @@ const cards: { title: string; body: string; cta: string; href: string; icon: Ico
     href: '/solutions/metro-connect/',
     icon: TrainIcon,
     image: fleetHighway,
-    focus: '60% 48%',
+    focus: '50% 50%',
   },
   {
     title: 'Intelligent Fleet Management',
@@ -72,8 +72,8 @@ const cards: { title: string; body: string; cta: string; href: string; icon: Ico
     cta: 'Explore Fleet Technology',
     href: '/technology/',
     icon: GearSixIcon,
-    image: controlRoom,
-    focus: '50% 45%',
+    image: fleetManagement,
+    focus: '50% 50%',
   },
 ]
 
@@ -99,8 +99,8 @@ export function SolutionsGrid() {
                 </div>
                 <div className="flex flex-1 flex-col gap-3 p-6">
                   <div className="flex items-center gap-3">
-                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--eyebrow-color,var(--muted-red))_12%,transparent)]">
-                      <c.icon weight="fill" aria-hidden className="size-6 text-[var(--eyebrow-color,var(--muted-red))]" />
+                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--link)_12%,transparent)]">
+                      <c.icon weight="fill" aria-hidden className="size-6 text-link" />
                     </span>
                     <h3 className="display text-xl font-bold leading-snug">{c.title}</h3>
                   </div>

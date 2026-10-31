@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { quoteHref, site } from '@/lib/site'
-import fleetHighway from '../../../public/images/fleet-highway.jpg'
+import fleetHighway from '../../../public/images/fleet/fleet-highway-wide.jpg'
 
 // Image beside the main description, following the approved homepage design.
 export function IntroSplit() {
@@ -16,14 +16,14 @@ export function IntroSplit() {
             fill
             placeholder="blur"
             sizes="(min-width: 1024px) 58vw, 100vw"
-            className="object-cover object-[50%_72%]"
+            className="object-cover"
           />
         </div>
         <div className="flex flex-col justify-center gap-5 px-4 py-12 sm:px-6 md:py-16 lg:col-span-5 lg:px-12">
           <h2 id="intro-split-title" className="display max-w-[18ch] text-3xl font-bold leading-tight text-blue md:text-4xl">
             Smart Urban Mobility for Modern Enterprises
           </h2>
-          <p className="font-mono text-sm uppercase tracking-[0.12em] text-[var(--eyebrow-color,var(--muted-red))]">
+          <p className="font-mono text-sm uppercase tracking-[0.12em] text-deep-blue">
             {site.tagline}
           </p>
           <p className="max-w-[52ch] text-lg leading-relaxed text-ink">

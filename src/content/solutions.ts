@@ -1,10 +1,11 @@
-import busBoardingPortrait from '../../public/images/fleet/bus-boarding-portrait.jpg'
+import busBoarding from '../../public/images/fleet/bus-boarding-wide.jpg'
 import busCutout from '../../public/images/fleet/bus-cutout.webp'
 import itParkFleet from '../../public/images/fleet/it-park-fleet.jpg'
-import lineup from '../../public/images/fleet/lineup-cutout.webp'
 import vanCutout from '../../public/images/fleet/van-cutout.webp'
-import employeesBoarding from '../../public/images/employees-boarding.jpg'
-import fleetHighway from '../../public/images/fleet-highway.jpg'
+import fleetHighway from '../../public/images/fleet/fleet-highway-wide.jpg'
+import solutionsBanner from '../../public/images/banners/solutions.jpg'
+import employeeTransport from '../../public/images/solutions/employee-transportation.jpg'
+import controlRoom from '../../public/images/technology/control-room.jpg'
 import chauffeur from '../../public/images/people/chauffeur.webp'
 import airportPickup from '../../public/images/rental/airport-pickup.jpg'
 import cabin from '../../public/images/rental/cabin-interior.jpg'
@@ -26,8 +27,8 @@ const employeeTransportation: DetailPage = {
   },
   h1: 'Corporate Employee Transportation',
   intro:
-    'Employee transportation solutions designed to support daily commutes, scheduled pickup and drop services, shift-based travel and organized fleet operations across offices and industrial facilities.',
-  hero: { src: itParkFleet, alt: 'G DRIVE sedans and vans lined up outside an IT park', focus: '50% 60%' },
+    'Employee transportation plays an important role in workforce coordination, particularly for organizations operating across multiple shifts, office locations and industrial facilities. G DRIVE provides corporate employee transportation solutions designed to support daily commutes, scheduled pickup and drop services, shift-based travel and organized fleet operations. Our approach combines transportation planning, vehicle allocation, route coordination and technology-enabled monitoring to help organizations manage employee mobility requirements.',
+  hero: { src: employeeTransport, alt: 'Employees boarding a G DRIVE bus at a corporate campus' },
   blocks: [
     {
       type: 'split',
@@ -43,13 +44,16 @@ const employeeTransportation: DetailPage = {
         'Vehicle and driver allocation',
         'Trip monitoring and reporting',
       ],
-      image: { src: busBoardingPortrait, alt: 'Employees boarding a G DRIVE staff bus', focus: '50% 70%' },
+      image: { src: busBoarding, alt: 'Employees boarding a G DRIVE staff bus', fit: 'contain' },
     },
     {
-      type: 'diagram',
+      type: 'split',
       title: 'Shift-based employee transportation',
-      body: 'Organizations with day, evening, night or rotating shifts need schedules that reflect their operating hours. G DRIVE plans transportation for different shift timings, subject to the agreed service scope and fleet availability, giving administrators a clearer view of daily operations.',
-      diagram: 'employee-transportation',
+      body: [
+        'Organizations with day, evening, night or rotating shifts need schedules that reflect their operating hours. G DRIVE plans transportation for different shift timings, subject to the agreed service scope and fleet availability, giving administrators a clearer view of daily operations.',
+      ],
+      image: { src: itParkFleet, alt: 'G DRIVE sedans and vans lined up outside an IT park' },
+      reverse: true,
     },
     {
       type: 'features',
@@ -104,7 +108,7 @@ const employeeTransportation: DetailPage = {
   cta: 'Request an employee transportation proposal',
   related: [
     { href: '/solutions/shuttle-services/', label: 'Shuttle Services' },
-    { href: '/technology/gps-telematics/', label: 'GPS & Telematics' },
+    { href: '/technology/', label: 'Technology' },
     { href: '/safety/', label: 'Safety' },
   ],
 }
@@ -168,8 +172,8 @@ const corporateCarRental: DetailPage = {
   cta: 'Enquire about corporate car rental',
   related: [
     { href: '/solutions/executive-car-rental/', label: 'Executive Car Rental' },
-    { href: '/fleet/sedans/', label: 'Sedans' },
-    { href: '/fleet/suvs/', label: 'SUVs' },
+    { href: '/fleet/', label: 'Our Fleet' },
+    { href: '/technology/', label: 'Technology' },
   ],
 }
 
@@ -222,7 +226,7 @@ const executiveCarRental: DetailPage = {
   cta: 'Plan your executive travel',
   related: [
     { href: '/solutions/corporate-car-rental/', label: 'Corporate Car Rental' },
-    { href: '/fleet/sedans/', label: 'Sedans' },
+    { href: '/fleet/', label: 'Our Fleet' },
     { href: '/people-excellence/driver-training/', label: 'Driver Training' },
   ],
 }
@@ -252,10 +256,13 @@ const shuttleServices: DetailPage = {
       ],
     },
     {
-      type: 'diagram',
+      type: 'split',
       title: 'Shuttle planning and operations',
-      body: 'An effective shuttle service coordinates passenger demand and route assessment, pickup and drop-point planning, timetables, vehicle allocation, trip monitoring and operational reporting.',
-      diagram: 'shuttle-services',
+      body: [
+        'An effective shuttle service coordinates passenger demand and route assessment, pickup and drop-point planning, timetables, vehicle allocation, trip monitoring and operational reporting.',
+      ],
+      image: { src: itParkFleet, alt: 'G DRIVE shuttle vans lined up outside an office campus' },
+      reverse: true,
     },
     {
       type: 'checklist',
@@ -267,7 +274,7 @@ const shuttleServices: DetailPage = {
         'Options for different passenger capacities',
         'Support for campus and workplace connectivity',
       ],
-      image: { src: employeesBoarding, alt: 'Employees boarding a G DRIVE shuttle', focus: '50% 70%' },
+      image: { src: busBoarding, alt: 'Employees boarding a G DRIVE shuttle', fit: 'contain' },
     },
     {
       type: 'cities',
@@ -284,7 +291,7 @@ const shuttleServices: DetailPage = {
   related: [
     { href: '/solutions/campus-mobility/', label: 'Campus Mobility' },
     { href: '/solutions/metro-connect/', label: 'Metro Connect' },
-    { href: '/fleet/vans/', label: 'Vans' },
+    { href: '/fleet/', label: 'Our Fleet' },
   ],
 }
 
@@ -308,13 +315,16 @@ const campusMobility: DetailPage = {
       body: [
         'Campus transport arrangements can be planned around student transportation, institutional schedules, designated pickup points and agreed route requirements.',
       ],
-      image: { src: busBoardingPortrait, alt: 'Passengers boarding a G DRIVE bus', focus: '50% 70%' },
+      image: { src: busBoarding, alt: 'Passengers boarding a G DRIVE bus', fit: 'contain' },
     },
     {
-      type: 'diagram',
+      type: 'split',
       title: 'Corporate campus mobility',
-      body: 'Large office campuses and business parks may need transportation between entrances, facilities, buildings and nearby transit connections. G DRIVE helps evaluate shuttle arrangements based on campus layout and passenger requirements.',
-      diagram: 'campus-mobility',
+      body: [
+        'Large office campuses and business parks may need transportation between entrances, facilities, buildings and nearby transit connections. G DRIVE helps evaluate shuttle arrangements based on campus layout and passenger requirements.',
+      ],
+      image: { src: itParkFleet, alt: 'G DRIVE vehicles lined up at a corporate campus' },
+      reverse: true,
     },
     {
       type: 'steps',
@@ -332,7 +342,7 @@ const campusMobility: DetailPage = {
   cta: 'Plan your campus transportation',
   related: [
     { href: '/solutions/shuttle-services/', label: 'Shuttle Services' },
-    { href: '/fleet/buses/', label: 'Buses' },
+    { href: '/fleet/', label: 'Our Fleet' },
     { href: '/solutions/metro-connect/', label: 'Metro Connect' },
   ],
 }
@@ -361,10 +371,12 @@ const metroConnect: DetailPage = {
       ],
     },
     {
-      type: 'diagram',
+      type: 'split',
       title: 'Coordinated transit mobility',
-      body: 'A feeder arrangement considers passenger demand, station and pickup-point locations, timetable coordination, route feasibility, vehicle capacity and operational monitoring.',
-      diagram: 'metro-connect',
+      body: [
+        'A feeder arrangement considers passenger demand, station and pickup-point locations, timetable coordination, route feasibility, vehicle capacity and operational monitoring.',
+      ],
+      image: { src: controlRoom, alt: 'An operator monitoring routes and trips in the G DRIVE control room' },
     },
     {
       type: 'split',
@@ -372,7 +384,7 @@ const metroConnect: DetailPage = {
       body: [
         'Organizations can contact G DRIVE to evaluate shuttle requirements for employees, students or other designated passenger groups.',
       ],
-      image: { src: employeesBoarding, alt: 'Passengers boarding a G DRIVE feeder shuttle', focus: '50% 70%' },
+      image: { src: busBoarding, alt: 'Passengers boarding a G DRIVE feeder shuttle', fit: 'contain' },
       reverse: true,
     },
     { type: 'note', body: 'Specific routes, operating hours, transit partnerships and service coverage are confirmed before being offered as active services.' },
@@ -381,7 +393,7 @@ const metroConnect: DetailPage = {
   related: [
     { href: '/solutions/shuttle-services/', label: 'Shuttle Services' },
     { href: '/solutions/campus-mobility/', label: 'Campus Mobility' },
-    { href: '/fleet/vans/', label: 'Vans' },
+    { href: '/fleet/', label: 'Our Fleet' },
   ],
 }
 
@@ -397,27 +409,13 @@ export const solutionsSection: Section = {
   h1: 'Mobility solutions for organizations',
   intro:
     'From corporate employee transportation and executive car rentals to campus shuttles and metro feeder services, G DRIVE coordinates your transportation through one technology-enabled partner.',
-  hero: { src: lineup, alt: 'The G DRIVE fleet: bus, van, SUV, sedan and electric vehicle', fit: 'contain' },
-  cardsTitle: 'Choose a solution',
+  hero: { src: solutionsBanner, alt: 'A G DRIVE chauffeur welcoming an executive beside a company car' },
   pages: [employeeTransportation, corporateCarRental, executiveCarRental, shuttleServices, campusMobility, metroConnect],
   blocks: [
-    {
-      type: 'features',
-      title: 'Why partner with G DRIVE?',
-      items: [
-        { icon: 'network', title: 'Integrated mobility', body: 'Multiple transportation requirements coordinated through one mobility partner.' },
-        { icon: 'cpu', title: 'Technology-enabled operations', body: 'Digital tools for fleet visibility and trip coordination.' },
-        { icon: 'shield', title: 'Safety-focused processes', body: 'Driver readiness, training, vehicle checks and intelligent monitoring.' },
-        { icon: 'sliders', title: 'Flexible solutions', body: 'Services designed around workforce size, schedules and operational needs.' },
-        { icon: 'handshake', title: 'Business-oriented support', body: 'Mobility arrangements aligned with organizational requirements.' },
-        { icon: 'checklist', title: 'ISO 9001:2015 certified', body: 'A quality management system behind every service.' },
-      ],
-    },
     {
       type: 'cities',
       title: 'Where we operate',
       body: 'G DRIVE serves organizations in Chennai and Tamil Nadu, with growing operations for Bengaluru and Hyderabad. Coverage and fleet availability are confirmed for each location.',
     },
   ],
-  cta: 'Discuss your transportation requirements',
 }

@@ -13,17 +13,7 @@ const pages = [
   '/solutions/campus-mobility/',
   '/solutions/metro-connect/',
   '/fleet/',
-  '/fleet/buses/',
-  '/fleet/vans/',
-  '/fleet/suvs/',
-  '/fleet/sedans/',
-  '/fleet/electric-vehicles/',
   '/technology/',
-  '/technology/fleet-management/',
-  '/technology/gps-telematics/',
-  '/technology/driver-app/',
-  '/technology/passenger-app/',
-  '/technology/control-tower/',
   '/safety/',
   '/safety/iot-breathalyzer/',
   '/safety/gps-geofencing/',
@@ -79,6 +69,21 @@ test('menu links are clickable over the page', async ({ page }) => {
   await page.getByRole('dialog').getByRole('link', { name: 'Blog' }).click()
   await expect(page).toHaveURL(/\/blog\/$/)
   await expect(page.getByRole('dialog')).toBeHidden()
+})
+
+test('removed fleet and technology pages redirect to their parent', async ({ page }) => {
+  await page.goto('/fleet/buses/')
+  await expect(page).toHaveURL(/\/fleet\/$/)
+  await page.goto('/technology/driver-app')
+  await expect(page).toHaveURL(/\/technology\/$/)
+})
+
+test('navigation has Home and the G pin is on the home banner only', async ({ page }) => {
+  await page.goto('/about/')
+  await expect(page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/')
+  await expect(page.locator('img[src*="pin-white"]')).toHaveCount(0)
+  await page.goto('/')
+  await expect(page.locator('img[src*="pin-white"]')).toHaveCount(1)
 })
 
 // Turnstile is switched off for now (src/lib/leads/flags.ts).

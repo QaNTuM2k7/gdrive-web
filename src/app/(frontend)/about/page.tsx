@@ -1,42 +1,44 @@
 import { SealCheckIcon } from '@phosphor-icons/react/dist/ssr'
 
 import { Blocks } from '@/components/blocks/Blocks'
-import { ClosingCta } from '@/components/home/ClosingCta'
+import { Industries } from '@/components/home/Industries'
+import { WhyPartner } from '@/components/home/WhyPartner'
 import { RevealText } from '@/components/motion/RevealText'
 import { PageHeader } from '@/components/site/PageHeader'
+import { PageIntro } from '@/components/site/PageIntro'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { pageMetadata } from '@/lib/seo'
 import { quoteHref, site } from '@/lib/site'
-import itParkFleet from '../../../../public/images/fleet/it-park-fleet.jpg'
-import controlRoom from '../../../../public/images/technology/control-room.jpg'
+import aboutBanner from '../../../../public/images/banners/about.jpg'
 
-// Copy from the SEO master document, section 3 (About G DRIVE).
+// Copy from the client's corrections document and the SEO master document, section 3 (About G DRIVE).
 
 export const metadata = pageMetadata({
   title: 'About G DRIVE | Enterprise Mobility & Transportation Solutions',
   description:
     'Learn about G DRIVE, the mobility brand of New Travel Liines India Pvt Ltd, delivering enterprise transportation, corporate travel and technology-enabled mobility solutions.',
   path: '/about/',
-  image: itParkFleet,
+  image: aboutBanner,
 })
 
 export default function AboutPage() {
   return (
     <>
       <PageHeader
-        title="Moving people. Connecting possibilities."
+        title="Moving People. Connecting Possibilities."
         crumbs={[{ label: 'About', href: '/about/' }]}
-        intro={
-          <p>
-            G DRIVE is the flagship mobility brand of {site.legalName}, an {site.certification} certified company
-            delivering transportation and mobility solutions for corporates, educational institutions and public transit
-            networks.
-          </p>
-        }
-        image={{ src: itParkFleet, alt: 'The G DRIVE fleet outside an IT park', focus: '50% 60%' }}
+        image={{ src: aboutBanner, alt: 'The G DRIVE fleet outside a corporate office' }}
+      />
+      <PageIntro
+        title="Moving People. Connecting Possibilities."
+        paragraphs={[
+          `G DRIVE is the flagship mobility brand of ${site.legalName}, an ${site.certification} certified company. We deliver transportation and mobility solutions for corporates, educational institutions and public transit networks.`,
+          'Our services bring together enterprise employee transportation, corporate car rental, executive mobility, shuttle services, campus transportation and technology-enabled fleet operations.',
+          'With an experienced leadership team, G DRIVE combines operational expertise, technology, safety-focused processes and customer-oriented service to address the changing transportation needs of modern organizations.',
+        ]}
       >
         <ButtonLink href={quoteHref()}>Partner with G DRIVE</ButtonLink>
-      </PageHeader>
+      </PageIntro>
 
       <section data-section="Vision" className="bg-paper-2">
         <div className="frame grid grid-cols-1 gap-6 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-20 lg:px-10">
@@ -63,8 +65,6 @@ export default function AboutPage() {
           {
             type: 'steps',
             title: 'Our approach to mobility',
-            intro:
-              'Enterprise employee transportation, corporate car rental, executive mobility, shuttles, campus transportation and technology-enabled fleet operations, delivered through one approach.',
             items: [
               { title: 'Planning and coordination', body: 'Transportation planned around your locations and schedules.' },
               { title: 'Fleet and driver allocation', body: 'Vehicles and trained drivers matched to each requirement.' },
@@ -82,29 +82,20 @@ export default function AboutPage() {
               { icon: 'bus', title: 'Flexible fleet categories', body: 'Buses, vans, SUVs, sedans and electric vehicles for different journeys and passenger requirements.' },
             ],
           },
-          {
-            type: 'split',
-            title: 'Operational reporting and service support',
-            body: [
-              'With an experienced leadership team, G DRIVE combines operational expertise, technology, safety-focused processes and customer-oriented service to address the changing transportation needs of modern organizations.',
-            ],
-            image: { src: controlRoom, alt: 'An operator monitoring fleet dashboards in the G DRIVE control room', focus: '50% 45%' },
-            tone: 'blue',
-          },
         ]}
       />
 
-      <section data-section="Parent company" aria-labelledby="parent-title" className="bg-paper">
+      <section data-section="Parent company" aria-labelledby="parent-title" className="bg-card">
         <div className="frame grid grid-cols-1 gap-6 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-12 lg:px-10">
           <div className="lg:col-span-5">
-            <RevealText id="parent-title" text="Our parent organization" className="display text-3xl font-extrabold md:text-4xl" />
+            <RevealText id="parent-title" text="Our Parent Organization" className="display text-3xl font-extrabold md:text-4xl" />
           </div>
           <div className="flex flex-col justify-center gap-6 lg:col-span-7">
             <p className="max-w-[58ch] text-lg leading-relaxed text-ink-soft">
-              G DRIVE operates as the mobility brand of {site.legalName}, headquartered in {site.address.locality},{' '}
-              {site.address.region}.
+              <strong className="font-semibold text-ink">{site.legalName}.</strong> G DRIVE operates as the mobility brand of{' '}
+              {site.legalName}.
             </p>
-            <div className="card flex items-center gap-4 p-5">
+            <div className="flex items-center gap-4 rounded-2xl bg-paper-2 p-5">
               <SealCheckIcon weight="duotone" aria-hidden className="size-10 text-link" />
               <div>
                 <p className="font-semibold">{site.certification} certified</p>
@@ -115,7 +106,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <ClosingCta title="Partner with G DRIVE" />
+      <WhyPartner />
+      <Industries />
     </>
   )
 }

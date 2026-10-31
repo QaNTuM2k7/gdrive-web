@@ -1,6 +1,6 @@
 import Image, { type StaticImageData } from 'next/image'
-import Link from 'next/link'
 
+import { ButtonLink } from '@/components/ui/ButtonLink'
 import busCutout from '../../../public/images/fleet/bus-cutout.webp'
 import electric from '../../../public/images/fleet/electric-vehicles.jpg'
 import sedanCutout from '../../../public/images/fleet/sedan-cutout.webp'
@@ -37,7 +37,7 @@ export function FleetGrid() {
         <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-6">
           {fleet.map((v) => (
             <li key={v.slug} className="reveal">
-              <Link href={`/fleet/${v.slug}/`} className="card group flex h-full flex-col items-center gap-3 overflow-hidden p-4 transition-transform duration-300 hover:-translate-y-1 md:p-5">
+              <div className="card flex h-full flex-col items-center gap-3 overflow-hidden p-4 md:p-5">
                 <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-white">
                   <Image
                     src={v.image}
@@ -45,14 +45,19 @@ export function FleetGrid() {
                     fill
                     placeholder="blur"
                     sizes="(min-width: 1024px) 18vw, (min-width: 640px) 30vw, 45vw"
-                    className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.05]"
+                    className="object-contain p-2"
                   />
                 </div>
                 <h3 className="display text-base font-bold text-link md:text-lg">{v.name}</h3>
-              </Link>
+              </div>
             </li>
           ))}
         </ul>
+        <div className="mt-10 flex justify-center">
+          <ButtonLink href="/fleet/" variant="blue">
+            Explore Our Fleet
+          </ButtonLink>
+        </div>
       </div>
     </section>
   )

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { site, telHref } from '@/lib/site'
-import logoColor from '../../../public/images/brand/logo-horizontal.png'
+import logoWhite from '../../../public/images/brand/logo-footer.png'
 
 const quickLinks = [
   { label: 'Home', href: '/' },
@@ -27,7 +27,7 @@ export function Footer() {
       <div className="frame grid grid-cols-1 gap-10 px-4 pb-10 pt-14 sm:px-6 md:grid-cols-2 lg:grid-cols-12 lg:px-10">
         <div className="flex flex-col gap-4 lg:col-span-4">
           <Link href="/" aria-label="G DRIVE home" className="w-fit">
-            <Image src={logoColor} alt="G DRIVE, Smart Urban Mobility" sizes="260px" className="h-auto w-[240px]" />
+            <Image src={logoWhite} alt="G DRIVE, Smart Urban Mobility" sizes="260px" className="h-auto w-[240px]" />
           </Link>
           <p className="text-sm text-text-light">
             <strong className="font-semibold">Powered by:</strong> New Travel Liines India Pvt Ltd
@@ -81,7 +81,7 @@ export function Footer() {
           <ul className="flex gap-3">
             {site.social.map((s) => {
               const SocialIcon = socialIcons[s.name as keyof typeof socialIcons]
-              const tile = `flex size-11 items-center justify-center rounded-lg text-white ${s.name === 'YouTube' ? 'bg-muted-red' : 'bg-blue'}`
+              const tile = `flex size-11 items-center justify-center rounded-lg bg-blue text-white`
               return (
                 <li key={s.name}>
                   {/* Until the client supplies a profile URL the icon is shown but is not a link. */}

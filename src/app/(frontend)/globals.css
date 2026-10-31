@@ -70,7 +70,7 @@
     --field: var(--secondary-navy);
     --rule-strong: var(--slate-blue);
     --card: var(--secondary-navy);
-    --eyebrow-color: var(--dusty-coral);
+    --eyebrow-color: var(--periwinkle);
     --card-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -12px rgb(0 0 0 / 0.5);
   }
 }
@@ -85,7 +85,6 @@
   --color-text-muted: var(--text-muted);
   --color-text-dark: var(--text-dark);
   --color-deep-blue: var(--deep-blue);
-  --color-muted-red: var(--muted-red);
   --color-cream: var(--cream);
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
@@ -149,7 +148,7 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     /* Muted red on light sections (gold is too faint on cream); gold on blue sections. */
-    color: var(--eyebrow-color, var(--muted-red));
+    color: var(--eyebrow-color, var(--deep-blue));
   }
   .on-blue {
     --frame-rule: var(--rule-on-blue);

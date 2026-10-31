@@ -1,13 +1,17 @@
 import { ArrowUpRightIcon } from '@phosphor-icons/react/dist/ssr'
 import Image from 'next/image'
 import Link from 'next/link'
+import type { ReactNode } from 'react'
 
 import { Blocks } from '@/components/blocks/Blocks'
 import { ClosingCta } from '@/components/home/ClosingCta'
 import { Faq } from '@/components/home/Faq'
+import { Industries } from '@/components/home/Industries'
+import { WhyPartner } from '@/components/home/WhyPartner'
 import { JsonLd } from '@/components/JsonLd'
 import { RevealText } from '@/components/motion/RevealText'
 import { PageHeader } from '@/components/site/PageHeader'
+import { PageIntro } from '@/components/site/PageIntro'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import type { DetailPage, Section } from '@/content/types'
 import type { ServiceValue } from '@/lib/leads/options'
@@ -124,16 +128,14 @@ export function DetailTemplate({ page, section }: { page: DetailPage; section: {
       <JsonLd data={[serviceJsonLd({ name: page.h1, description: page.seo.description, path }), ...(page.faqs?.length ? [faqJsonLd(page.faqs)] : [])]} />
       <PageHeader
         title={page.h1}
-        intro={<p>{page.intro}</p>}
+        tone="gold"
         crumbs={[
           { label: section.label, href: `${section.base}/` },
           { label: page.label, href: path },
         ]}
-        image={page.hero}
         status={page.status}
-      >
-        <ButtonLink href={quoteHref(page.service)}>Request a Quote</ButtonLink>
-      </PageHeader>
+      />
+      <PageIntro title={page.h1} paragraphs={[page.intro]} image={page.hero} />
       <Blocks blocks={page.blocks} />
       {page.faqs && page.faqs.length > 0 && <Faq items={page.faqs} title="Frequently asked questions" />}
       {page.related && page.related.length > 0 && <Related links={page.related} />}
@@ -142,22 +144,23 @@ export function DetailTemplate({ page, section }: { page: DetailPage; section: {
   )
 }
 
-export function HubTemplate({ section }: { section: Section }) {
+// Main pages share the home page's banner and its closing sections. `cards` replaces the default page cards.
+export function HubTemplate({ section, cards }: { section: Section; cards?: ReactNode }) {
   return (
     <>
       {section.faqs?.length ? <JsonLd data={faqJsonLd(section.faqs)} /> : null}
-      <PageHeader
-        title={section.h1}
-        intro={<p>{section.intro}</p>}
-        crumbs={[{ label: section.label, href: `${section.base}/` }]}
-        image={section.hero}
-      >
+      <PageHeader title={section.h1} crumbs={[{ label: section.label, href: `${section.base}/` }]} image={section.hero} />
+      <PageIntro title={section.h1} paragraphs={[section.intro]} figure={section.figure}>
         <ButtonLink href={quoteHref(section.service)}>Request a Quote</ButtonLink>
-      </PageHeader>
-      <PageCards title={section.cardsTitle} pages={section.pages} base={section.base} service={section.service} cta={section.cardsCta} />
+      </PageIntro>
+      {cards ??
+        (section.pages.length > 0 && section.cardsTitle && (
+          <PageCards title={section.cardsTitle} pages={section.pages} base={section.base} service={section.service} cta={section.cardsCta} />
+        ))}
       <Blocks blocks={section.blocks} />
       {section.faqs && section.faqs.length > 0 && <Faq items={section.faqs} title="Frequently asked questions" />}
-      <ClosingCta title={section.cta} service={section.service} />
+      <WhyPartner />
+      <Industries />
     </>
   )
 }

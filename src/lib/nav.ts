@@ -15,6 +15,7 @@ const group = (s: Section): NavGroup => ({
 
 // Full site navigation, derived from the content sections so new pages appear automatically.
 export const navTree: NavGroup[] = [
+  { label: 'Home', href: '/', children: [] },
   group(solutionsSection),
   group(fleetSection),
   group(technologySection),

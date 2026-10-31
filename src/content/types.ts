@@ -47,8 +47,6 @@ export type Section = {
   intro: string
   hero: Img
   service: ServiceValue
-  /** Full-width image under the description, such as a flow diagram. */
-  figure?: Img
   /** Blocks shown on the hub page after the child cards. */
   blocks: Block[]
   cardsTitle?: string

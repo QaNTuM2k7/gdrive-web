@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import type { ReactNode } from 'react'
 
 import { Picture } from '@/components/blocks/Picture'
@@ -6,7 +5,7 @@ import { RevealText } from '@/components/motion/RevealText'
 import type { Img } from '@/content/types'
 
 // First section below a page banner: heading and description on white, with a photo beside them on inner
-// pages and an optional full-width figure, such as the technology flow diagram, underneath.
+// pages and an optional full-width figure, such as the technology ecosystem diagram, underneath.
 export function PageIntro({
   title,
   paragraphs,
@@ -17,7 +16,7 @@ export function PageIntro({
   title: string
   paragraphs: string[]
   image?: Img
-  figure?: Img
+  figure?: ReactNode
   children?: ReactNode
 }) {
   const heading = <RevealText text={title} className="display max-w-[20ch] text-3xl font-extrabold leading-tight md:text-5xl" />
@@ -49,16 +48,7 @@ export function PageIntro({
             <div className="flex flex-col gap-5 lg:col-span-7">{text}</div>
           </div>
         )}
-        {figure && (
-          <Image
-            src={figure.src}
-            alt={figure.alt}
-            placeholder="blur"
-            sizes="(min-width: 768px) 729px, 100vw"
-            className="mx-auto mt-12 h-auto w-full rounded-2xl"
-            style={{ maxWidth: figure.src.width }}
-          />
-        )}
+        {figure}
       </div>
     </section>
   )

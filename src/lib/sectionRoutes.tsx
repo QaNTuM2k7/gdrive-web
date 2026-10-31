@@ -9,7 +9,7 @@ import { pageMetadata } from './seo'
 type SlugProps = { params: Promise<{ slug: string }> }
 
 // Builds the hub page and statically generated child pages for a content section.
-export function sectionRoutes(section: Section, options: { cards?: ReactNode } = {}) {
+export function sectionRoutes(section: Section, options: { cards?: ReactNode; figure?: ReactNode } = {}) {
   const find = (slug: string) => section.pages.find((p) => p.slug === slug)
 
   return {
@@ -21,7 +21,7 @@ export function sectionRoutes(section: Section, options: { cards?: ReactNode } =
         image: section.hero.src,
       }),
       Page: function HubPage() {
-        return <HubTemplate section={section} cards={options.cards} />
+        return <HubTemplate section={section} cards={options.cards} figure={options.figure} />
       },
     },
     detail: {

@@ -4,7 +4,6 @@ import controlRoom from '../../public/images/technology/control-room.jpg'
 import digitalReporting from '../../public/images/technology/digital-reporting.jpg'
 import driverPassengerApp from '../../public/images/technology/driver-passenger-app.jpg'
 import fleetManagement from '../../public/images/technology/fleet-management.jpg'
-import flowDiagram from '../../public/images/technology/flow-diagram.jpg'
 import type { Section } from './types'
 
 // Technology page copy from the client's corrections document. The boxes are cards without links, as the
@@ -23,15 +22,11 @@ export const technologySection: Section = {
   intro:
     "Managing transportation requires coordination between travel requests, schedules, drivers, vehicles, passengers and operational teams. G DRIVE's technology ecosystem brings together digital transportation workflows designed to support centralized coordination, fleet visibility and structured trip management.",
   hero: { src: technologyBanner, alt: 'An operator reviewing the G DRIVE transport management platform' },
-  figure: {
-    src: flowDiagram,
-    alt: 'G DRIVE technology ecosystem: client or travel request, central operations portal, fleet and driver allocation, driver and passenger apps, GPS and telematics, control tower, then billing and reporting',
-  },
   pages: [],
   blocks: [
     {
       type: 'cards',
-      title: 'Our technology ecosystem',
+      title: 'Inside the ecosystem',
       items: [
         {
           image: { src: fleetManagement, alt: 'An operator using the G DRIVE fleet management dashboard' },

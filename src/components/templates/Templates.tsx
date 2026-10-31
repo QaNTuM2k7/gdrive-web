@@ -145,12 +145,12 @@ export function DetailTemplate({ page, section }: { page: DetailPage; section: {
 }
 
 // Main pages share the home page's banner and its closing sections. `cards` replaces the default page cards.
-export function HubTemplate({ section, cards }: { section: Section; cards?: ReactNode }) {
+export function HubTemplate({ section, cards, figure }: { section: Section; cards?: ReactNode; figure?: ReactNode }) {
   return (
     <>
       {section.faqs?.length ? <JsonLd data={faqJsonLd(section.faqs)} /> : null}
       <PageHeader title={section.h1} crumbs={[{ label: section.label, href: `${section.base}/` }]} image={section.hero} />
-      <PageIntro title={section.h1} paragraphs={[section.intro]} figure={section.figure}>
+      <PageIntro title={section.h1} paragraphs={[section.intro]} figure={figure}>
         <ButtonLink href={quoteHref(section.service)}>Request a Quote</ButtonLink>
       </PageIntro>
       {cards ??

@@ -86,6 +86,13 @@ test('navigation has Home and the G pin is on the home banner only', async ({ pa
   await expect(page.locator('img[src*="pin-white"]')).toHaveCount(1)
 })
 
+test('technology ecosystem diagram opens a stage on click', async ({ page }) => {
+  await page.goto('/technology/')
+  await page.getByRole('button', { name: /Control Tower/ }).click()
+  await expect(page.locator('#ecosystem-detail')).toContainText('Stage 06 of 07')
+  await expect(page.getByRole('button', { name: 'Play tour' })).toBeVisible()
+})
+
 // Turnstile is switched off for now (src/lib/leads/flags.ts).
 test('contact form shows no Cloudflare widget', async ({ page }) => {
   await page.goto('/contact/')
